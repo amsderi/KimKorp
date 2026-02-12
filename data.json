@@ -1,0 +1,36 @@
+{
+  "news": [
+    {"id":"n1","tag":"match","title":"Kim Korp Crushes Viper Queens in Grand Final","excerpt":"An absolutely dominant performance from our Valorant squad. 13-4 on Ascent and 13-7 on Haven sealed the deal.","date":"Feb 10, 2026","icon":"🏆","featured":true,"image":""},
+    {"id":"n2","tag":"roster","title":"Welcome \"NeonQueen\" to Our CS2 Roster","excerpt":"We're thrilled to announce the signing of one of the most talented AWPers in the scene.","date":"Feb 8, 2026","icon":"👑","featured":true,"image":""},
+    {"id":"n3","tag":"event","title":"Dreamhack Spring 2026 — We're In!","excerpt":"Kim Korp has been invited to compete at Dreamhack Spring. See you on stage, queens.","date":"Feb 5, 2026","icon":"🎮","featured":false,"image":""},
+    {"id":"n4","tag":"announcement","title":"New Merch Drop — Neon Collection","excerpt":"Our latest merch collection just dropped. Hoodies, jerseys, and more.","date":"Feb 2, 2026","icon":"🔥","featured":false,"image":""},
+    {"id":"n5","tag":"match","title":"Recap: League Season 4 Week 3","excerpt":"Two wins and one tough loss this week. Our League squad is adapting fast.","date":"Jan 28, 2026","icon":"⚔️","featured":false,"image":""},
+    {"id":"n6","tag":"roster","title":"ShyFox Steps Up as IGL","excerpt":"ShyFox is officially taking over as in-game leader for our Valorant roster.","date":"Jan 22, 2026","icon":"🦊","featured":false,"image":""}
+  ],
+  "matches": [
+    {"id":"m1","date":"Feb 10, 2026","opponent":"Viper Queens","oppLogo":"🐍","oppColor":"#22c55e","oppLogoImg":"","game":"Valorant","tournament":"GC Championship S4 Grand Final","score":"2 - 0","result":"win","maps":[{"name":"Ascent","our":13,"their":4},{"name":"Haven","our":13,"their":7}],"picks":["Haven","Ascent"],"bans":["Icebox","Fracture"],"oppPicks":["Bind"],"oppBans":["Lotus","Split"],"oppInfo":{"region":"NA","rank":"#5","winrate":"68%","players":"5"}},
+    {"id":"m2","date":"Feb 6, 2026","opponent":"Frost Sirens","oppLogo":"❄️","oppColor":"#38bdf8","oppLogoImg":"","game":"Valorant","tournament":"GC Championship S4 Semifinal","score":"2 - 1","result":"win","maps":[{"name":"Bind","our":13,"their":11},{"name":"Split","our":9,"their":13},{"name":"Lotus","our":13,"their":8}],"picks":["Bind","Lotus"],"bans":["Icebox","Fracture"],"oppPicks":["Split"],"oppBans":["Haven","Ascent"],"oppInfo":{"region":"EU","rank":"#3","winrate":"74%","players":"5"}},
+    {"id":"m3","date":"Feb 1, 2026","opponent":"Nova Blaze","oppLogo":"🔥","oppColor":"#f97316","oppLogoImg":"","game":"CS2","tournament":"ESL Impact League Week 5","score":"0 - 2","result":"loss","maps":[{"name":"Mirage","our":12,"their":16},{"name":"Inferno","our":10,"their":16}],"picks":["Mirage"],"bans":["Nuke","Vertigo"],"oppPicks":["Inferno"],"oppBans":["Ancient","Overpass"],"oppInfo":{"region":"EU","rank":"#1","winrate":"82%","players":"5"}},
+    {"id":"m4","date":"Jan 28, 2026","opponent":"Shadow Kittens","oppLogo":"🐱","oppColor":"#a78bfa","oppLogoImg":"","game":"League of Legends","tournament":"GLL Womens League Week 3","score":"1 - 0","result":"win","maps":[{"name":"Summoner's Rift","our":1,"their":0}],"picks":["Jinx","Vi","Ahri","Thresh","Gwen"],"bans":["Zed","Yasuo","LeBlanc"],"oppPicks":["Kai'Sa","Lee Sin","Syndra","Nautilus","Fiora"],"oppBans":["Vayne","Yone","Akali"],"oppInfo":{"region":"EU","rank":"#7","winrate":"55%","players":"5"}},
+    {"id":"m5","date":"Feb 15, 2026","opponent":"Lunar Foxes","oppLogo":"🌙","oppColor":"#e879f9","oppLogoImg":"","game":"Valorant","tournament":"GC Championship S5 Opening","score":"TBD","result":"upcoming","maps":[],"picks":[],"bans":[],"oppPicks":[],"oppBans":[],"oppInfo":{"region":"KR","rank":"#2","winrate":"79%","players":"5"}}
+  ],
+  "admins": [
+    {"id":"a1","name":"Sarah \"CyberSiren\" Müller","role":"Team Owner & CEO","contact":"sarah@kimkorp.gg","desc":"Founded Kim Korp in 2023 with a vision to dominate.","image":""},
+    {"id":"a2","name":"Lena \"PixelHeart\" Braun","role":"Team Manager","contact":"lena@kimkorp.gg","desc":"Keeps the team organized and ensures peak performance.","image":""},
+    {"id":"a3","name":"Mia \"GlitchFox\" Weber","role":"Head Coach","contact":"mia@kimkorp.gg","desc":"Former pro player turned coach. Develops all strategies.","image":""},
+    {"id":"a4","name":"Nina \"VoltVixen\" Koch","role":"Content & Social Lead","contact":"nina@kimkorp.gg","desc":"Runs socials, streams, and content across all platforms.","image":""}
+  ],
+  "squads": [
+    {"id":"s1","name":"Kim Korp Valiant","game":"Valorant","members":[{"name":"ShyFox","role":"IGL / Duelist"},{"name":"NightRose","role":"Controller"},{"name":"PixelDiva","role":"Sentinel"},{"name":"ZapQueen","role":"Initiator"},{"name":"LunaStrike","role":"Flex"}]},
+    {"id":"s2","name":"Kim Korp Strike","game":"CS2","members":[{"name":"NeonQueen","role":"AWPer"},{"name":"BlazeStar","role":"Entry"},{"name":"IceDagger","role":"IGL / Rifler"},{"name":"GhostPetal","role":"Lurker"},{"name":"VelvetAce","role":"Support"}]},
+    {"id":"s3","name":"Kim Korp Rift","game":"League of Legends","members":[{"name":"QueenBlade","role":"Top"},{"name":"JungleCat","role":"Jungle"},{"name":"SparkMage","role":"Mid"},{"name":"CrystalArrow","role":"ADC"},{"name":"HealDream","role":"Support"}]}
+  ],
+  "sponsors": [
+    {"id":"sp1","name":"HyperX","tier":"Diamond","color":"#ff2d6b","desc":"Premium gaming peripherals.","initials":"HX","image":""},
+    {"id":"sp2","name":"GFuel","tier":"Diamond","color":"#00c896","desc":"The official energy fuel of Kim Korp.","initials":"GF","image":""},
+    {"id":"sp3","name":"Secretlab","tier":"Gold","color":"#c724ff","desc":"Elite gaming chairs.","initials":"SL","image":""},
+    {"id":"sp4","name":"ASUS ROG","tier":"Gold","color":"#ff4444","desc":"Republic of Gamers hardware.","initials":"ROG","image":""},
+    {"id":"sp5","name":"Logitech G","tier":"Silver","color":"#38bdf8","desc":"Precision peripherals.","initials":"LG","image":""},
+    {"id":"sp6","name":"Red Bull","tier":"Silver","color":"#ffd700","desc":"Giving us wings since day one.","initials":"RB","image":""}
+  ]
+}
