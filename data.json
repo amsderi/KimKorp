@@ -63,51 +63,6 @@
   ],
   "matches": [
     {
-      "id": "m1",
-      "date": "Feb 10, 2026",
-      "opponent": "Viper Queens",
-      "oppLogo": "🐍",
-      "oppColor": "#22c55e",
-      "oppLogoImg": "",
-      "game": "Valorant",
-      "tournament": "GC Championship S4 Grand Final",
-      "score": "2 - 0",
-      "result": "win",
-      "maps": [
-        {
-          "name": "Ascent",
-          "our": 13,
-          "their": 4
-        },
-        {
-          "name": "Haven",
-          "our": 13,
-          "their": 7
-        }
-      ],
-      "picks": [
-        "Haven",
-        "Ascent"
-      ],
-      "bans": [
-        "Icebox",
-        "Fracture"
-      ],
-      "oppPicks": [
-        "Bind"
-      ],
-      "oppBans": [
-        "Lotus",
-        "Split"
-      ],
-      "oppInfo": {
-        "region": "NA",
-        "rank": "#5",
-        "winrate": "68%",
-        "players": "5"
-      }
-    },
-    {
       "id": "m2",
       "date": "Feb 6, 2026",
       "opponent": "Frost Sirens",
