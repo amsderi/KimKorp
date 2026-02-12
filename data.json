@@ -1,11 +1,55 @@
 {
-    "news": [
-    {"id":"n1","tag":"match","title":"Kim Korp Crushes Viper Queens in Grand Final","excerpt":"An absolutely dominant performance from our Valorant squad. 13-4 on Ascent and 13-7 on Haven sealed the deal.","date":"Feb 10, 2026","icon":"🏆","featured":true,"image":"","url":"http://unicornmaster.bplaced.net/"},
-    {"id":"n2","tag":"roster","title":"Welcome \"NeonQueen\" to Our CS2 Roster","excerpt":"We're thrilled to announce the signing of one of the most talented AWPers in the scene.","date":"Feb 8, 2026","icon":"👑","featured":true,"image":"","url":"http://unicornmaster.bplaced.net/"},
-    {"id":"n3","tag":"event","title":"Dreamhack Spring 2026 — We're In!","excerpt":"Kim Korp has been invited to compete at Dreamhack Spring. See you on stage, queens.","date":"Feb 5, 2026","icon":"🎮","featured":false,"image":"","url":"http://unicornmaster.bplaced.net/"},
-    {"id":"n4","tag":"announcement","title":"New Merch Drop — Neon Collection","excerpt":"Our latest merch collection just dropped. Hoodies, jerseys, and more.","date":"Feb 2, 2026","icon":"🔥","featured":false,"image":"","url":"http://unicornmaster.bplaced.net/"},
-    {"id":"n5","tag":"match","title":"Recap: League Season 4 Week 3","excerpt":"Two wins and one tough loss this week. Our League squad is adapting fast.","date":"Jan 28, 2026","icon":"⚔️","featured":false,"image":"","url":"http://unicornmaster.bplaced.net/"},
-    {"id":"n6","tag":"roster","title":"ShyFox Steps Up as IGL","excerpt":"ShyFox is officially taking over as in-game leader for our Valorant roster.","date":"Jan 22, 2026","icon":"🦊","featured":false,"image":"","url":"http://unicornmaster.bplaced.net/"}
+  "news": [
+    {
+      "id": "n1",
+      "tag": "match",
+      "title": "Kim Korp Crushes Viper Queens in Grand Final",
+      "excerpt": "An absolutely dominant performance from our Valorant squad. 13-4 on Ascent and 13-7 on Haven sealed the deal.",
+      "date": "Feb 10, 2026",
+      "icon": "🏆",
+      "featured": true,
+      "image": ""
+    },
+    {
+      "id": "n2",
+      "tag": "roster",
+      "title": "Welcome \"NeonQueen\" to Our CS2 Roster",
+      "excerpt": "We're thrilled to announce the signing of one of the most talented AWPers in the scene.",
+      "date": "Feb 8, 2026",
+      "icon": "👑",
+      "featured": true,
+      "image": ""
+    },
+    {
+      "id": "n3",
+      "tag": "event",
+      "title": "Dreamhack Spring 2026 — We're In!",
+      "excerpt": "Kim Korp has been invited to compete at Dreamhack Spring. See you on stage, queens.",
+      "date": "Feb 5, 2026",
+      "icon": "🎮",
+      "featured": false,
+      "image": ""
+    },
+    {
+      "id": "n4",
+      "tag": "announcement",
+      "title": "New Merch Drop — Neon Collection",
+      "excerpt": "Our latest merch collection just dropped. Hoodies, jerseys, and more.",
+      "date": "Feb 2, 2026",
+      "icon": "🔥",
+      "featured": false,
+      "image": ""
+    },
+    {
+      "id": "n5",
+      "tag": "match",
+      "title": "Recap: League Season 4 Week 3",
+      "excerpt": "Two wins and one tough loss this week. Our League squad is adapting fast.",
+      "date": "Jan 28, 2026",
+      "icon": "⚔️",
+      "featured": false,
+      "image": ""
+    }
   ],
   "matches": [
     {
