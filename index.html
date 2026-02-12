@@ -65,6 +65,9 @@ nav button.active::after{content:'';position:absolute;bottom:0;left:20px;right:2
 .nb h3{font-family:'Bebas Neue',sans-serif;font-size:24px;letter-spacing:2px;margin-bottom:8px;line-height:1.2}
 .nb p{color:var(--muted);font-size:15px;line-height:1.6;margin-bottom:16px}
 .nd{font-size:12px;color:var(--muted);letter-spacing:1px;opacity:.7}
+a.nc,a.fc{display:block}
+a.nc .nb::after,a.fc .fco::after{content:'Read more →';display:block;margin-top:12px;font-size:13px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent);opacity:.6;transition:opacity .3s}
+a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .feat{display:grid;grid-template-columns:1.5fr 1fr;gap:28px;margin-bottom:40px}
 .fc{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;position:relative;cursor:pointer;transition:all .4s}
 .fc:hover{border-color:rgba(255,45,107,.3)}
@@ -393,19 +396,20 @@ function renderNews(){
   const wr=played>0?Math.round(wins/played*100)+'%':'0%';
   let ap='';
   if(adm){
-    ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage News</div><div class="ail">${n.map(x=>`<div class="air"><span class="ntg ${tc(x.tag)}" style="margin:0">${x.tag}</span><span class="it">${x.title}</span><span class="im">${x.date}${x.featured?' · ⭐':''}</span><div class="abr"><button class="ab abe" data-en="${x.id}">Edit</button><button class="ab abd" data-dn="${x.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-an>+ Add Post</button>${editing&&editing.t==='news'?newsForm():''}</div>`;
+    ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage News</div><div class="ail">${n.map(x=>`<div class="air"><span class="ntg ${tc(x.tag)}" style="margin:0">${x.tag}</span><span class="it">${x.title}</span><span class="im">${x.date}${x.featured?' · ⭐':''}${x.url?' · 🔗':''}</span><div class="abr"><button class="ab abe" data-en="${x.id}">Edit</button><button class="ab abd" data-dn="${x.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-an>+ Add Post</button>${editing&&editing.t==='news'?newsForm():''}</div>`;
   }
   const th=x=>x.image?`<img src="${x.image}">`:`<span class="oi">${x.icon||'📰'}</span>`;
   return `<div class="pt">LATEST NEWS</div><div class="ps">Stay updated with Kim Korp</div>${ap}
     <div class="sr"><div class="sb fade-in"><div class="sv">${D.matches.length}</div><div class="sl">Matches</div></div><div class="sb fade-in"><div class="sv">${wr}</div><div class="sl">Win Rate</div></div><div class="sb fade-in"><div class="sv">${D.squads.length}</div><div class="sl">Squads</div></div><div class="sb fade-in"><div class="sv">${D.squads.reduce((a,s)=>a+s.members.length,0)}</div><div class="sl">Players</div></div></div>
-    ${f.length>=2?`<div class="feat"><div class="fc fade-in"><div class="fi">${f[0].image?`<img src="${f[0].image}">`:`<span style="font-size:80px;opacity:.15">${f[0].icon}</span>`}</div><div class="fco"><span class="ntg ${tc(f[0].tag)}">${f[0].tag}</span><h2>${f[0].title}</h2><p>${f[0].excerpt}</p></div></div><div class="fsd"><div class="fc fade-in" style="flex:1"><div class="fi" style="height:100%">${f[1].image?`<img src="${f[1].image}">`:`<span style="font-size:60px;opacity:.15">${f[1].icon}</span>`}</div><div class="fco"><span class="ntg ${tc(f[1].tag)}">${f[1].tag}</span><h2 style="font-size:24px">${f[1].title}</h2></div></div></div></div>`:''}
-    <div class="ng">${r.map(x=>`<div class="nc fade-in"><div class="nt">${th(x)}</div><div class="nb"><span class="ntg ${tc(x.tag)}">${x.tag}</span><h3>${x.title}</h3><p>${x.excerpt}</p><div class="nd">${x.date}</div></div></div>`).join('')}</div>`;
+    ${f.length>=2?`<div class="feat"><a class="fc fade-in" href="${f[0].url||'#'}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="fi">${f[0].image?`<img src="${f[0].image}">`:`<span style="font-size:80px;opacity:.15">${f[0].icon}</span>`}</div><div class="fco"><span class="ntg ${tc(f[0].tag)}">${f[0].tag}</span><h2>${f[0].title}</h2><p>${f[0].excerpt}</p></div></a><div class="fsd"><a class="fc fade-in" href="${f[1].url||'#'}" target="_blank" rel="noopener" style="flex:1;text-decoration:none;color:inherit"><div class="fi" style="height:100%">${f[1].image?`<img src="${f[1].image}">`:`<span style="font-size:60px;opacity:.15">${f[1].icon}</span>`}</div><div class="fco"><span class="ntg ${tc(f[1].tag)}">${f[1].tag}</span><h2 style="font-size:24px">${f[1].title}</h2></div></a></div></div>`:''}
+    <div class="ng">${r.map(x=>`<a class="nc fade-in" href="${x.url||'#'}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit"><div class="nt">${th(x)}</div><div class="nb"><span class="ntg ${tc(x.tag)}">${x.tag}</span><h3>${x.title}</h3><p>${x.excerpt}</p><div class="nd">${x.date}</div></div></a>`).join('')}</div>`;
 }
 function newsForm(){
-  const nw=!editing.id;const df={tag:'match',title:'',excerpt:'',date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),icon:'📰',featured:false,image:''};
+  const nw=!editing.id;const df={tag:'match',title:'',excerpt:'',date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),icon:'📰',featured:false,image:'',url:''};
   const d=nw?df:D.news.find(x=>x.id===editing.id);if(!d)return '';
   return `<div class="af" id="nf"><h3 style="font-family:'Bebas Neue';font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD POST':'EDIT POST'}</h3>
     <div class="fr"><div class="fg"><label>Title</label><input id="ft" value="${esc(d.title)}"></div><div class="fg"><label>Date</label><input id="fd" value="${esc(d.date)}"></div></div>
+    <div class="fg"><label>Forum Post URL</label><input id="fu" value="${esc(d.url||'')}" placeholder="http://unicornmaster.bplaced.net/..."></div>
     <div class="fg"><label>Excerpt</label><textarea id="fe">${esc(d.excerpt)}</textarea></div>
     <div class="fr3"><div class="fg"><label>Tag</label><select id="fgt"><option value="match" ${d.tag==='match'?'selected':''}>Match</option><option value="roster" ${d.tag==='roster'?'selected':''}>Roster</option><option value="event" ${d.tag==='event'?'selected':''}>Event</option><option value="announcement" ${d.tag==='announcement'?'selected':''}>Announcement</option></select></div><div class="fg"><label>Icon</label><input id="fic" value="${esc(d.icon)}"></div><div class="fg"><label>Featured?</label><select id="ff"><option value="0" ${!d.featured?'selected':''}>No</option><option value="1" ${d.featured?'selected':''}>Yes</option></select></div></div>
     <div class="fg"><label>Image</label><div class="iua" id="niu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
@@ -552,7 +556,7 @@ function bindAll(){
   document.querySelectorAll('[data-dn]').forEach(e=>e.onclick=async()=>{if(confirm('Delete this post?')){D.news=D.news.filter(n=>n.id!==e.dataset.dn);await saveToGitHub();render()}});
   document.querySelectorAll('[data-sn]').forEach(e=>e.onclick=async()=>{
     const id=e.dataset.sn,nw=id==='new';
-    const obj={id:nw?uid():id,tag:document.getElementById('fgt').value,title:v('ft'),excerpt:v('fe'),date:v('fd'),icon:v('fic'),featured:document.getElementById('ff').value==='1',image:''};
+    const obj={id:nw?uid():id,tag:document.getElementById('fgt').value,title:v('ft'),excerpt:v('fe'),date:v('fd'),icon:v('fic'),featured:document.getElementById('ff').value==='1',image:'',url:v('fu')};
     const fi=document.getElementById('nif');
     if(fi?.files[0])obj.image=await img2b64(fi.files[0]);
     else{const ex=D.news.find(n=>n.id===id);if(ex)obj.image=ex.image}
