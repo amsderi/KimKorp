@@ -16,7 +16,8 @@ body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xm
 header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
 .hi{max-width:1400px;margin:0 auto;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between}
 .logo{font-family:'Orbitron',sans-serif;font-size:28px;font-weight:900;letter-spacing:4px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer;position:relative}
-.logo::after{content:'⚡';position:absolute;right:-28px;top:-2px;font-size:18px;-webkit-text-fill-color:var(--accent);animation:pulse 2s ease-in-out infinite}
+.logo::after{display:none}
+.clan-logo{width:52px;height:52px;margin-left:14px;filter:drop-shadow(0 0 10px var(--glow));animation:pulse 2s ease-in-out infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.9)}}
 nav{display:flex;gap:6px;align-items:center}
 nav button{font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:none;border:none;color:var(--muted);padding:10px 20px;cursor:pointer;position:relative;transition:color .3s}
@@ -262,6 +263,63 @@ function img2b64(file){return new Promise(r=>{const x=new FileReader();x.onload=
 function tc(t){return'ntg-'+t}
 function trc(t){return t==='Diamond'?'td':t==='Gold'?'tg':'ts2'}
 
+function LOGO_SVG(mode){
+  const isHero=mode==='hero';
+  const id=isHero?'h':'n';
+  const sz=isHero?'width:120px;height:120px;margin:0 auto 20px;display:block;filter:drop-shadow(0 0 24px rgba(255,45,107,0.5));animation:heroIn 1s ease-out':'';
+  const cls=isHero?'':'class="clan-logo"';
+  return `<svg ${cls} viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg" ${isHero?'style="'+sz+'"':''}>
+<defs>
+<linearGradient id="g${id}" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" stop-color="#ff2d6b"/><stop offset="100%" stop-color="#c724ff"/></linearGradient>
+<linearGradient id="g${id}2" x1="50%" y1="0%" x2="50%" y2="100%"><stop offset="0%" stop-color="#ff2d6b"/><stop offset="60%" stop-color="#c724ff"/><stop offset="100%" stop-color="#8b15cc"/></linearGradient>
+<radialGradient id="g${id}r" cx="50%" cy="35%" r="50%"><stop offset="0%" stop-color="#ff5c8d" stop-opacity="0.3"/><stop offset="100%" stop-color="transparent"/></radialGradient>
+</defs>
+<!-- Outer ring -->
+<circle cx="100" cy="100" r="95" fill="none" stroke="url(#g${id})" stroke-width="2" opacity="0.4"/>
+<circle cx="100" cy="100" r="90" fill="none" stroke="url(#g${id})" stroke-width="1" opacity="0.2"/>
+<!-- Inner glow -->
+<circle cx="100" cy="100" r="88" fill="url(#g${id}r)"/>
+<!-- Crown on top -->
+<path d="M68 42 L78 26 L88 38 L100 18 L112 38 L122 26 L132 42 L128 48 L72 48 Z" fill="url(#g${id})" opacity="0.95"/>
+<circle cx="78" cy="25" r="3.5" fill="#ff2d6b"/><circle cx="100" cy="15" r="4" fill="#fff" opacity="0.8"/><circle cx="122" cy="25" r="3.5" fill="#c724ff"/>
+<!-- Head -->
+<ellipse cx="100" cy="62" rx="14" ry="16" fill="url(#g${id}2)" opacity="0.95"/>
+<!-- Hair flowing -->
+<path d="M86 56 C82 52 78 56 76 64 C74 72 76 78 78 82 C79 76 80 68 86 60 Z" fill="url(#g${id})" opacity="0.7"/>
+<path d="M114 56 C118 52 122 56 124 64 C126 72 124 78 122 82 C121 76 120 68 114 60 Z" fill="url(#g${id})" opacity="0.7"/>
+<path d="M84 58 C80 62 77 70 78 80 L82 74 C82 68 83 62 86 58 Z" fill="url(#g${id})" opacity="0.5"/>
+<path d="M116 58 C120 62 123 70 122 80 L118 74 C118 68 117 62 114 58 Z" fill="url(#g${id})" opacity="0.5"/>
+<!-- Neck -->
+<path d="M94 77 L94 84 Q94 86 96 86 L104 86 Q106 86 106 84 L106 77" fill="url(#g${id}2)" opacity="0.9"/>
+<!-- Shoulders -->
+<path d="M96 86 C88 88 74 92 68 100 L72 102 C78 95 88 92 96 90 Z" fill="url(#g${id}2)" opacity="0.85"/>
+<path d="M104 86 C112 88 126 92 132 100 L128 102 C122 95 112 92 104 90 Z" fill="url(#g${id}2)" opacity="0.85"/>
+<!-- Upper body / bust -->
+<path d="M72 102 C72 102 74 112 82 118 C86 121 92 122 100 120 C108 122 114 121 118 118 C126 112 128 102 128 102 L124 100 C124 100 122 110 116 115 C112 118 106 118 100 117 C94 118 88 118 84 115 C78 110 76 100 76 100 Z" fill="url(#g${id}2)" opacity="0.9"/>
+<!-- Waist (narrow) -->
+<path d="M84 118 C88 124 94 126 100 126 C106 126 112 124 116 118 L114 130 C110 134 106 136 100 136 C94 136 90 134 86 130 Z" fill="url(#g${id}2)" opacity="0.9"/>
+<!-- Hips (wide, feminine) -->
+<path d="M86 130 C82 134 76 142 74 152 L78 154 C80 145 84 138 88 134 Z" fill="url(#g${id}2)" opacity="0.85"/>
+<path d="M114 130 C118 134 124 142 126 152 L122 154 C120 145 116 138 112 134 Z" fill="url(#g${id}2)" opacity="0.85"/>
+<path d="M88 134 C90 138 94 140 100 140 C106 140 110 138 112 134 L114 146 C110 150 106 152 100 152 C94 152 90 150 86 146 Z" fill="url(#g${id}2)" opacity="0.85"/>
+<!-- Legs hint -->
+<path d="M86 146 C84 152 82 160 82 168 L88 168 C88 162 89 154 90 148 Z" fill="url(#g${id}2)" opacity="0.75"/>
+<path d="M114 146 C116 152 118 160 118 168 L112 168 C112 162 111 154 110 148 Z" fill="url(#g${id}2)" opacity="0.75"/>
+<!-- KK on torso -->
+<text x="100" y="115" text-anchor="middle" font-family="Orbitron,sans-serif" font-size="16" font-weight="900" fill="white" opacity="0.95" letter-spacing="2">KK</text>
+<!-- Sparkle accents -->
+<path d="M52 80 L55 74 L58 80 L55 86 Z" fill="#ff2d6b" opacity="0.5"/>
+<path d="M142 80 L145 74 L148 80 L145 86 Z" fill="#c724ff" opacity="0.5"/>
+<path d="M60 140 L62 136 L64 140 L62 144 Z" fill="#ff2d6b" opacity="0.35"/>
+<path d="M136 140 L138 136 L140 140 L138 144 Z" fill="#c724ff" opacity="0.35"/>
+<!-- Small star decorations -->
+<circle cx="66" cy="60" r="1.5" fill="#ff2d6b" opacity="0.4"/>
+<circle cx="134" cy="60" r="1.5" fill="#c724ff" opacity="0.4"/>
+<circle cx="58" cy="110" r="1" fill="#ff2d6b" opacity="0.3"/>
+<circle cx="142" cy="110" r="1" fill="#c724ff" opacity="0.3"/>
+</svg>`;
+}
+
 // ========== DATA LOADING ==========
 async function loadData(){
   try{
@@ -304,9 +362,9 @@ function render(){
 
 function renderHeader(){
   const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'contact',l:'Team'},{id:'sponsors',l:'Partners'}];
-  return `<header><div class="hi"><div class="logo" data-nav="news">KIM KORP</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
+  return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:'Rajdhani',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:10px 20px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
 }
-function renderHero(){return `<section class="hero"><div class="hero-bg"></div><div class="hero-lines"></div><div class="dia"></div><div class="dia"></div><div class="dia"></div><div class="hero-content"><h1>KIM KORP</h1><div class="sub">FEMALE ESPORTS COLLECTIVE</div><div class="tag">Queens of the Server — Fear the Korp</div></div></section>`}
+function renderHero(){return `<section class="hero"><div class="hero-bg"></div><div class="hero-lines"></div><div class="dia"></div><div class="dia"></div><div class="dia"></div><div class="hero-content">${LOGO_SVG('hero')}<h1>KIM KORP</h1><div class="sub">FEMALE ESPORTS COLLECTIVE</div><div class="tag">Queens of the Server — Fear the Korp</div></div></section>`}
 function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,contact:renderContact,sponsors:renderSponsors}[page]||renderNews)()}
 
 function renderLoginModal(){
