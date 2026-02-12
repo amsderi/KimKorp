@@ -7,36 +7,12 @@
       "excerpt": "Chei from China will be stepping into the position of Talent Scout Asia.",
       "date": "Feb 12, 2026",
       "icon": "🍥",
-      "featured": true,
+      "featured": false,
       "image": "",
       "url": "http://unicornmaster.bplaced.net/showthread.php?tid=62"
     }
   ],
-  "matches": [
-    {
-      "id": "m5",
-      "date": "Feb 15, 2026",
-      "opponent": "Lunar Foxes",
-      "oppLogo": "🌙",
-      "oppColor": "#e879f9",
-      "oppLogoImg": "",
-      "game": "Valorant",
-      "tournament": "GC Championship S5 Opening",
-      "score": "TBD",
-      "result": "upcoming",
-      "maps": [],
-      "picks": [],
-      "bans": [],
-      "oppPicks": [],
-      "oppBans": [],
-      "oppInfo": {
-        "region": "KR",
-        "rank": "#2",
-        "winrate": "79%",
-        "players": "5"
-      }
-    }
-  ],
+  "matches": [],
   "admins": [
     {
       "id": "a2",
