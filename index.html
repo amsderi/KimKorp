@@ -86,7 +86,7 @@ a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .ml{display:flex;flex-direction:column;gap:16px}
 .mr{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:20px 28px;display:grid;grid-template-columns:140px 1fr auto auto;align-items:center;gap:24px;cursor:pointer;transition:all .3s;position:relative;overflow:hidden}
 .mr::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
-.mr.win::before{background:#00c896}.mr.loss::before{background:#ff4444}.mr.upcoming::before{background:var(--accent2)}
+.mr.win::before{background:#00c896}.mr.loss::before{background:#ff4444}.mr.draw::before{background:#ffa500}.mr.upcoming::before{background:var(--accent2)}
 .mr:hover{border-color:rgba(255,45,107,.2);transform:translateX(4px)}
 .md{font-size:13px;color:var(--muted);letter-spacing:1px}
 .mt{display:flex;align-items:center;gap:16px;font-family:'Bebas Neue',sans-serif;font-size:22px;letter-spacing:2px;flex-wrap:wrap}
@@ -94,9 +94,9 @@ a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .tl{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:700;flex-shrink:0;overflow:hidden}
 .tl img{width:100%;height:100%;object-fit:cover}
 .ms{font-family:'Orbitron',sans-serif;font-size:20px;font-weight:700;letter-spacing:3px}
-.ms.ws{color:#00c896}.ms.ls{color:#ff4444}
+.ms.ws{color:#00c896}.ms.ls{color:#ff4444}.ms.ds{color:#ffa500}
 .mst{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;padding:4px 14px;border-radius:2px}
-.sw{background:rgba(0,200,150,.1);color:#00c896}.slo{background:rgba(255,68,68,.1);color:#ff4444}.su{background:rgba(199,36,255,.1);color:var(--accent2)}
+.sw{background:rgba(0,200,150,.1);color:#00c896}.slo{background:rgba(255,68,68,.1);color:#ff4444}.sd{background:rgba(255,165,0,.1);color:#ffa500}.su{background:rgba(199,36,255,.1);color:var(--accent2)}
 
 /* Match detail */
 .mdh{text-align:center;padding:40px 0}
@@ -107,7 +107,7 @@ a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .mut .tn{font-family:'Bebas Neue',sans-serif;font-size:28px;letter-spacing:4px}
 .mvs{font-family:'Orbitron',sans-serif;font-size:36px;font-weight:900;color:var(--accent);text-shadow:0 0 30px var(--glow)}
 .bsc{font-family:'Orbitron',sans-serif;font-size:64px;font-weight:900;letter-spacing:8px;margin:20px 0}
-.bsc .scl{color:#00c896}.bsc .scs{color:var(--muted);margin:0 8px}.bsc .scr{color:#ff4444}
+.bsc .scl{color:#00c896}.bsc .scs{color:var(--muted);margin:0 8px}.bsc .scr{color:#ff4444}.bsc .scd{color:#ffa500}
 .mm{display:flex;justify-content:center;gap:32px;color:var(--muted);font-size:14px;letter-spacing:1px;flex-wrap:wrap}
 .mpr{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px;margin-top:40px}
 .mc{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;position:relative;overflow:hidden}
@@ -420,20 +420,20 @@ function newsForm(){
 // ========== WARS ==========
 function renderWars(){
   const ms=D.matches,gs=[...new Set(ms.map(m=>m.game))];
-  const w=ms.filter(m=>m.result==='win').length,l=ms.filter(m=>m.result==='loss').length,u=ms.filter(m=>m.result==='upcoming').length;
+  const w=ms.filter(m=>m.result==='win').length,l=ms.filter(m=>m.result==='loss').length,dr=ms.filter(m=>m.result==='draw').length,u=ms.filter(m=>m.result==='upcoming').length;
   let ap='';
-  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage Matches</div><div class="ail">${ms.map(m=>`<div class="air"><span class="mst ${m.result==='win'?'sw':m.result==='loss'?'slo':'su'}" style="flex-shrink:0">${m.result.toUpperCase()}</span><span class="it">vs ${m.opponent}</span><span class="im">${m.date} · ${m.game}</span><div class="abr"><button class="ab abe" data-em="${m.id}">Edit</button><button class="ab abd" data-dm="${m.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-am>+ Add Match</button>${editing&&editing.t==='match'?matchForm():''}</div>`}
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage Matches</div><div class="ail">${ms.map(m=>`<div class="air"><span class="mst ${m.result==='win'?'sw':m.result==='loss'?'slo':m.result==='draw'?'sd':'su'}" style="flex-shrink:0">${m.result.toUpperCase()}</span><span class="it">vs ${m.opponent}</span><span class="im">${m.date} · ${m.game}</span><div class="abr"><button class="ab abe" data-em="${m.id}">Edit</button><button class="ab abd" data-dm="${m.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-am>+ Add Match</button>${editing&&editing.t==='match'?matchForm():''}</div>`}
   return `<div class="pt">WAR ROOM</div><div class="ps">Battle history & upcoming wars</div>${ap}
-    <div class="sr"><div class="sb fade-in"><div class="sv">${ms.length}</div><div class="sl">Total</div></div><div class="sb fade-in"><div class="sv" style="color:#00c896;-webkit-text-fill-color:#00c896">${w}</div><div class="sl">Wins</div></div><div class="sb fade-in"><div class="sv" style="color:#ff4444;-webkit-text-fill-color:#ff4444">${l}</div><div class="sl">Losses</div></div><div class="sb fade-in"><div class="sv" style="color:#c724ff;-webkit-text-fill-color:#c724ff">${u}</div><div class="sl">Upcoming</div></div></div>
-    <div class="mfl"><button class="fb act" data-fi="all">All</button>${gs.map(g=>`<button class="fb" data-fi="${g}">${g}</button>`).join('')}<button class="fb" data-fi="win">Wins</button><button class="fb" data-fi="loss">Losses</button></div>
-    <div class="ml">${ms.map(m=>`<div class="mr ${m.result} fade-in" data-mm="${m.id}" data-mg="${m.game}" data-mre="${m.result}"><div class="md">${m.date}<br><span style="color:var(--accent);font-size:11px;letter-spacing:1px">${m.game.toUpperCase()}</span></div><div class="mt"><span class="tl" style="background:var(--grad);color:#fff">KK</span><span>KIM KORP</span><span class="vs">VS</span><span class="tl" style="background:${m.oppColor};color:#fff">${m.oppLogoImg?`<img src="${m.oppLogoImg}">`:m.oppLogo}</span><span>${m.opponent.toUpperCase()}</span></div><div class="ms ${m.result==='win'?'ws':m.result==='loss'?'ls':''}">${m.score}</div><span class="mst ${m.result==='win'?'sw':m.result==='loss'?'slo':'su'}">${m.result==='upcoming'?'⏳ Upcoming':m.result.toUpperCase()}</span></div>`).join('')}</div>`;
+    <div class="sr"><div class="sb fade-in"><div class="sv">${ms.length}</div><div class="sl">Total</div></div><div class="sb fade-in"><div class="sv" style="color:#00c896;-webkit-text-fill-color:#00c896">${w}</div><div class="sl">Wins</div></div><div class="sb fade-in"><div class="sv" style="color:#ffa500;-webkit-text-fill-color:#ffa500">${dr}</div><div class="sl">Draws</div></div><div class="sb fade-in"><div class="sv" style="color:#ff4444;-webkit-text-fill-color:#ff4444">${l}</div><div class="sl">Losses</div></div></div>
+    <div class="mfl"><button class="fb act" data-fi="all">All</button>${gs.map(g=>`<button class="fb" data-fi="${g}">${g}</button>`).join('')}<button class="fb" data-fi="win">Wins</button><button class="fb" data-fi="draw">Draws</button><button class="fb" data-fi="loss">Losses</button></div>
+    <div class="ml">${ms.map(m=>`<div class="mr ${m.result} fade-in" data-mm="${m.id}" data-mg="${m.game}" data-mre="${m.result}"><div class="md">${m.date}<br><span style="color:var(--accent);font-size:11px;letter-spacing:1px">${m.game.toUpperCase()}</span></div><div class="mt"><span class="tl" style="background:var(--grad);color:#fff">KK</span><span>KIM KORP</span><span class="vs">VS</span><span class="tl" style="background:${m.oppColor};color:#fff">${m.oppLogoImg?`<img src="${m.oppLogoImg}">`:m.oppLogo}</span><span>${m.opponent.toUpperCase()}</span></div><div class="ms ${m.result==='win'?'ws':m.result==='loss'?'ls':m.result==='draw'?'ds':''}">${m.score}</div><span class="mst ${m.result==='win'?'sw':m.result==='loss'?'slo':m.result==='draw'?'sd':'su'}">${m.result==='upcoming'?'⏳ Upcoming':m.result.toUpperCase()}</span></div>`).join('')}</div>`;
 }
 function matchForm(){
   const nw=!editing.id;const df={opponent:'',oppLogo:'🎮',oppColor:'#888888',oppLogoImg:'',game:'Valorant',tournament:'',date:new Date().toLocaleDateString('en-US',{month:'short',day:'numeric',year:'numeric'}),score:'TBD',result:'upcoming',maps:[],picks:[],bans:[],oppPicks:[],oppBans:[],oppInfo:{region:'',rank:'',winrate:'',players:'5'}};
   const d=nw?df:D.matches.find(m=>m.id===editing.id);if(!d)return '';if(!fs.maps)fs.maps=[...(d.maps||[])];
   return `<div class="af" id="mf"><h3 style="font-family:'Bebas Neue';font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD MATCH':'EDIT MATCH'}</h3>
     <div class="fr"><div class="fg"><label>Opponent</label><input id="fo" value="${esc(d.opponent)}"></div><div class="fg"><label>Date</label><input id="fd" value="${esc(d.date)}"></div></div>
-    <div class="fr3"><div class="fg"><label>Game</label><input id="fga" value="${esc(d.game)}"></div><div class="fg"><label>Tournament</label><input id="fto" value="${esc(d.tournament)}"></div><div class="fg"><label>Result</label><select id="fre"><option value="upcoming" ${d.result==='upcoming'?'selected':''}>Upcoming</option><option value="win" ${d.result==='win'?'selected':''}>Win</option><option value="loss" ${d.result==='loss'?'selected':''}>Loss</option></select></div></div>
+    <div class="fr3"><div class="fg"><label>Game</label><input id="fga" value="${esc(d.game)}"></div><div class="fg"><label>Tournament</label><input id="fto" value="${esc(d.tournament)}"></div><div class="fg"><label>Result</label><select id="fre"><option value="upcoming" ${d.result==='upcoming'?'selected':''}>Upcoming</option><option value="win" ${d.result==='win'?'selected':''}>Win</option><option value="draw" ${d.result==='draw'?'selected':''}>Draw</option><option value="loss" ${d.result==='loss'?'selected':''}>Loss</option></select></div></div>
     <div class="fr3"><div class="fg"><label>Score</label><input id="fsc" value="${esc(d.score)}"></div><div class="fg"><label>Opp Emoji</label><input id="fol" value="${esc(d.oppLogo)}"></div><div class="fg"><label>Opp Color</label><input type="color" id="foc" value="${d.oppColor}" style="height:42px"></div></div>
     <div class="fg"><label>Opp Logo Image</label><div class="iua" id="miu">Click to upload${d.oppLogoImg?`<br><img src="${d.oppLogoImg}">`:''}
     </div><input type="file" id="mif" accept="image/*" style="display:none"></div>
@@ -450,7 +450,7 @@ function renderMD(){
   const m=D.matches.find(x=>x.id===mdet);if(!m)return '<p>Not found</p>';
   return `<button class="bbk" data-back style="margin-top:72px">← Back to War Room</button>
     <div class="mdh"><div class="mu"><div class="mut"><div class="tlg" style="background:var(--grad);color:#fff">KK</div><div class="tn">KIM KORP</div></div><div class="mvs">VS</div><div class="mut"><div class="tlg" style="background:${m.oppColor};color:#fff;font-size:36px">${m.oppLogoImg?`<img src="${m.oppLogoImg}">`:m.oppLogo}</div><div class="tn">${m.opponent.toUpperCase()}</div></div></div>
-    ${m.result!=='upcoming'?`<div class="bsc"><span class="scl">${m.score.split(' - ')[0]}</span><span class="scs">:</span><span class="scr">${m.score.split(' - ')[1]}</span></div>`:'<div style="margin:20px 0;font-family:Orbitron;font-size:28px;color:var(--accent2);letter-spacing:4px">UPCOMING</div>'}
+    ${m.result!=='upcoming'?`<div class="bsc"><span class="${m.result==='win'?'scl':m.result==='draw'?'scd':'scr'}">${m.score.split(' - ')[0]}</span><span class="scs">:</span><span class="${m.result==='loss'?'scr':m.result==='draw'?'scd':'scl'}">${m.score.split(' - ')[1]}</span></div>`:'<div style="margin:20px 0;font-family:Orbitron;font-size:28px;color:var(--accent2);letter-spacing:4px">UPCOMING</div>'}
     <div class="mm"><span>🎮 ${m.game}</span><span>🏆 ${m.tournament}</span><span>📅 ${m.date}</span></div></div>
     ${m.maps.length?`<h3 style="font-family:'Bebas Neue';font-size:22px;letter-spacing:3px;margin-bottom:16px;color:var(--accent)">MAP RESULTS</h3><div class="mpr">${m.maps.map(mp=>{const t=mp.our+mp.their,p=t>0?(mp.our/t)*100:50,w=mp.our>mp.their;return`<div class="mc ${w?'mw':'mlo'} fade-in"><h4>${w?'✅ Victory':'❌ Defeat'}</h4><div class="mn">${mp.name}</div><div class="msb"><span class="ts" style="color:#00c896">${mp.our}</span><div class="bc"><div class="bf" style="width:${p}%"></div></div><span class="ts" style="color:#ff4444">${mp.their}</span></div></div>`}).join('')}</div>`:''}
     ${m.picks.length||m.bans.length?`<div class="pbs"><h3>PICKS & BANS</h3><div style="margin-bottom:16px"><div style="font-size:13px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">Kim Korp</div><div class="pbr">${m.picks.map(p=>`<span class="pbi pbp">✔ ${p}</span>`).join('')}${m.bans.map(b=>`<span class="pbi pbb">✘ ${b}</span>`).join('')}</div></div><div><div style="font-size:13px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-bottom:8px">${m.opponent}</div><div class="pbr">${(m.oppPicks||[]).map(p=>`<span class="pbi pbp">✔ ${p}</span>`).join('')}${(m.oppBans||[]).map(b=>`<span class="pbi pbb">✘ ${b}</span>`).join('')}</div></div></div>`:''}
@@ -526,7 +526,7 @@ function bindAll(){
   // Back
   document.querySelectorAll('[data-back]').forEach(e=>e.onclick=()=>{mdet=null;render();scrollTo({top:0,behavior:'smooth'})});
   // Filters
-  document.querySelectorAll('[data-fi]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.fb').forEach(x=>x.classList.remove('act'));b.classList.add('act');const f=b.dataset.fi;document.querySelectorAll('.mr').forEach(r=>{const g=r.dataset.mg,re=r.dataset.mre;r.style.display=f==='all'?'':(f==='win'||f==='loss')?re===f?'':'none':g===f?'':'none'})});
+  document.querySelectorAll('[data-fi]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.fb').forEach(x=>x.classList.remove('act'));b.classList.add('act');const f=b.dataset.fi;document.querySelectorAll('.mr').forEach(r=>{const g=r.dataset.mg,re=r.dataset.mre;r.style.display=f==='all'?'':(f==='win'||f==='loss'||f==='draw')?re===f?'':'none':g===f?'':'none'})});
   // Cancel form
   document.querySelectorAll('[data-cf]').forEach(e=>e.onclick=()=>{editing=null;fs={};render()});
 
