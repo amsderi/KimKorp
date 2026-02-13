@@ -12,7 +12,39 @@
       "url": "http://unicornmaster.bplaced.net/showthread.php?tid=62"
     }
   ],
-  "matches": [],
+  "matches": [
+    {
+      "id": "mll2uziwtwuw",
+      "opponent": "test",
+      "oppLogo": "🎮",
+      "oppColor": "#888888",
+      "oppLogoImg": "",
+      "game": "Valorant",
+      "tournament": "",
+      "date": "Feb 13, 2026",
+      "score": "TBD",
+      "result": "draw",
+      "maps": [],
+      "picks": [
+        "1"
+      ],
+      "bans": [
+        "1"
+      ],
+      "oppPicks": [
+        "1"
+      ],
+      "oppBans": [
+        "1"
+      ],
+      "oppInfo": {
+        "region": "1",
+        "rank": "",
+        "winrate": "",
+        "players": "5"
+      }
+    }
+  ],
   "admins": [
     {
       "id": "a2",
