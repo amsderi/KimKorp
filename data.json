@@ -14,6 +14,29 @@
   ],
   "matches": [
     {
+      "id": "mmqjmakr9ea2",
+      "opponent": "Frankfurt 69ers",
+      "oppLogo": "🎮",
+      "oppColor": "#888888",
+      "oppLogoImg": "",
+      "game": "TG",
+      "tournament": "Bundesliga Qualification",
+      "date": "Mar 22, 2026",
+      "score": "TBD",
+      "result": "upcoming",
+      "maps": [],
+      "picks": [],
+      "bans": [],
+      "oppPicks": [],
+      "oppBans": [],
+      "oppInfo": {
+        "region": "",
+        "rank": "",
+        "winrate": "",
+        "players": "5"
+      }
+    },
+    {
       "id": "mmqjl7we73c1",
       "opponent": "Aurora Gaming",
       "oppLogo": "🎮",
