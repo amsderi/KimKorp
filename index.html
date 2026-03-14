@@ -18,21 +18,21 @@ body::before{content:'';position:fixed;inset:0;background:url("data:image/svg+xm
 ::-webkit-scrollbar{width:6px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--accent);border-radius:3px}
 
 /* Header */
-header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,15,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
-.hi{max-width:1400px;margin:0 auto;padding:0 40px;height:72px;display:flex;align-items:center;justify-content:space-between}
+header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,15,0.95);backdrop-filter:blur(20px);border-bottom:1px solid var(--border)}
+.hi{max-width:1400px;margin:0 auto;padding:8px 40px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .logo{font-family:var(--ff-head);font-size:28px;font-weight:900;letter-spacing:4px;background:var(--grad);-webkit-background-clip:text;-webkit-text-fill-color:transparent;cursor:pointer;position:relative}
 .logo::after{display:none}
 .clan-logo{width:52px;height:52px;margin-left:14px;filter:drop-shadow(0 0 10px var(--glow));animation:pulse 2s ease-in-out infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.9)}}
-nav{display:flex;gap:6px;align-items:center}
-nav button{font-family:var(--ff-body);font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--muted);padding:10px 14px;cursor:pointer;position:relative;transition:color .3s}
+nav{display:flex;gap:4px;align-items:center;flex-wrap:wrap}
+nav button{font-family:var(--ff-body);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--muted);padding:8px 10px;cursor:pointer;position:relative;transition:color .3s}
 nav button:hover,nav button.active{color:var(--accent)}
-nav button.active::after{content:'';position:absolute;bottom:0;left:14px;right:14px;height:2px;background:var(--grad);border-radius:1px;box-shadow:0 0 10px var(--glow)}
+nav button.active::after{content:'';position:absolute;bottom:0;left:10px;right:10px;height:2px;background:var(--grad);border-radius:1px;box-shadow:0 0 10px var(--glow)}
 .atgl{background:var(--grad)!important;color:#fff!important;border-radius:3px!important;padding:8px 16px!important;font-size:12px!important;margin-left:12px;-webkit-text-fill-color:#fff}
 .atgl.on{background:rgba(255,45,107,.15)!important;border:1px solid var(--accent)!important;color:var(--accent)!important;-webkit-text-fill-color:var(--accent)}
 
 /* Hero */
-.hero{position:relative;height:500px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;margin-top:72px}
+.hero{position:relative;height:500px;display:flex;align-items:center;justify-content:center;text-align:center;overflow:hidden;margin-top:90px}
 .hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(255,45,107,.15),transparent),radial-gradient(ellipse 60% 50% at 70% 60%,rgba(199,36,255,.1),transparent),var(--gradd)}
 .hero-lines{position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(255,45,107,.03) 2px,rgba(255,45,107,.03) 4px);animation:scan 8s linear infinite}
 @keyframes scan{0%{transform:translateY(0)}100%{transform:translateY(4px)}}
@@ -296,7 +296,7 @@ footer .soc a:hover{color:var(--accent)}
 </style>
 </head>
 <body>
-<div id="app"><div class="loading" style="margin-top:72px">LOADING...</div></div>
+<div id="app"><div class="loading" style="margin-top:90px">LOADING...</div></div>
 <script>
 // =============================================
 //  CONFIG — Change your admin password here
@@ -411,6 +411,9 @@ function render(){
     +renderFooter()
     +(showLogin?renderLoginModal():'');
   bindAll();
+  // Adjust top offset to match actual header height
+  const hdr=document.querySelector('header');
+  if(hdr){const h=hdr.offsetHeight+'px';document.querySelectorAll('.hero,.pt,[data-back],.loading').forEach(el=>{if(el.style.marginTop)el.style.marginTop=h;if(el.classList.contains('hero'))el.style.marginTop=h})}
 }
 
 function renderGate(){
@@ -436,7 +439,7 @@ function bindGate(){
 
 function renderHeader(){
   const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'contact',l:'Team'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
-  return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:var(--ff-body);font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:10px 14px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
+  return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:var(--ff-body);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
 }
 function renderHero(){return `<section class="hero"><div class="hero-bg"></div><div class="hero-lines"></div><div class="dia"></div><div class="dia"></div><div class="dia"></div><div class="hero-content">${LOGO_SVG('hero')}<h1>KIM KORP</h1><div class="sub">FEMALE ESPORTS COLLECTIVE</div><div class="tag">Queens of the Server — Fear the Korp</div></div></section>`}
 function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,contact:renderContact,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
@@ -519,7 +522,7 @@ function matchForm(){
 // ========== MATCH DETAIL ==========
 function renderMD(){
   const m=D.matches.find(x=>x.id===mdet);if(!m)return '<p>Not found</p>';
-  return `<button class="bbk" data-back style="margin-top:72px">← Back to War Room</button>
+  return `<button class="bbk" data-back style="margin-top:90px">← Back to War Room</button>
     <div class="mdh"><div class="mu"><div class="mut"><div class="tlg" style="background:var(--grad);color:#fff">KK</div><div class="tn">KIM KORP</div></div><div class="mvs">VS</div><div class="mut"><div class="tlg" style="background:${m.oppColor};color:#fff;font-size:36px">${m.oppLogoImg?`<img src="${m.oppLogoImg}">`:m.oppLogo}</div><div class="tn">${m.opponent.toUpperCase()}</div></div></div>
     ${m.result!=='upcoming'?`<div class="bsc"><span class="${m.result==='win'?'scl':m.result==='draw'?'scd':'scr'}">${m.score.split(' - ')[0]}</span><span class="scs">:</span><span class="${m.result==='loss'?'scr':m.result==='draw'?'scd':'scl'}">${m.score.split(' - ')[1]}</span></div>`:'<div style="margin:20px 0;font-family:var(--ff-head);font-size:28px;color:var(--accent2);letter-spacing:4px">UPCOMING</div>'}
     <div class="mm"><span>🎮 ${m.game}</span><span>🏆 ${m.tournament}</span><span>📅 ${m.date}</span></div></div>
@@ -538,7 +541,7 @@ function renderContact(){
 
   const founderHtml=f.name?`<div class="tsec"><h2>FOUNDER</h2><div class="fdr fade-in"><div class="fdr-img">${f.image?`<img src="${f.image}">`:'<div class="ph">👤</div>'}</div><div class="fdr-body"><h3>${f.name}</h3><div class="fdr-role">${f.title}</div><div class="fdr-bio">${f.bio}</div>${f.quote?`<div class="fdr-quote">"${f.quote}"</div>`:''}<div class="fdr-contact">✉ ${f.contact}</div></div></div></div>`:'';
 
-  return `<div class="pt" style="margin-top:72px">THE TEAM</div><div class="ps">Administration & Squad Overview</div>${ap}${founderHtml}
+  return `<div class="pt" style="margin-top:90px">THE TEAM</div><div class="ps">Administration & Squad Overview</div>${ap}${founderHtml}
     <div class="tsec"><h2>ADMINISTRATION</h2><div class="ag">${D.admins.map(a=>`<div class="ac fade-in"><div class="aav">${a.image?`<img src="${a.image}">`:'<div class="ph">👤</div>'}</div><div class="ainf"><h4>${a.name}</h4><div class="arl">${a.role}</div><div class="aco">${a.desc}<br><span style="color:var(--accent)">✉ ${a.contact}</span></div></div></div>`).join('')}</div></div>
     <div class="tsec"><h2>ACTIVE SQUADS</h2><div class="sg">${D.squads.map(s=>`<div class="sc fade-in"><h4>${s.name}</h4><div class="sgm">${s.game}</div><div class="sms">${s.members.map(m=>`<div class="sm"><div class="mav">${m.name.charAt(0)}</div><span class="mnm">${m.name}</span><span class="mrl">${m.role}</span></div>`).join('')}</div></div>`).join('')}</div></div>`;
 }
@@ -574,7 +577,7 @@ function squadForm(){
 function renderSponsors(){
   let ap='';
   if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage Partners</div><div class="ail">${D.sponsors.map(s=>`<div class="air"><span class="it">${s.name}</span><span class="im spt ${trc(s.tier)}">${s.tier}${s.associate?.name?' · 👤 '+s.associate.name:''}</span><div class="abr"><button class="ab abe" data-esp="${s.id}">Edit</button><button class="ab abd" data-dsp="${s.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-asp>+ Add Partner</button>${editing&&editing.t==='sponsor'?sponsorForm():''}</div>`}
-  return `<div class="pt" style="margin-top:72px">PARTNERS & SPONSORS</div><div class="ps">The organizations that power Kim Korp</div>${ap}
+  return `<div class="pt" style="margin-top:90px">PARTNERS & SPONSORS</div><div class="ps">The organizations that power Kim Korp</div>${ap}
     <div class="pd">${D.sponsors.map(s=>{const a=s.associate||{};const hasA=a.name;return `<div class="pcard fade-in"><div class="pcard-body"><div class="pcard-logo" style="background:${s.color}22;border:2px solid ${s.color}44;color:${s.color}">${s.image?`<img src="${s.image}">`:s.initials}</div><h3>${s.name}</h3><div class="pcard-tier ${trc(s.tier)}">${s.tier} Partner</div><div class="pcard-desc">${s.desc}</div></div>${hasA?`<div class="passoc"><div class="passoc-img">${a.image?`<img src="${a.image}">`:'<span style="font-size:40px;opacity:.2">👤</span>'}</div><h4>${a.name}</h4><div class="pa-role">${a.role}</div>${a.contact?`<div class="pa-email">✉ ${a.contact}</div>`:''}</div>`:'<div class="passoc" style="opacity:.3;font-size:13px;color:var(--muted)">No associate<br>assigned</div>'}`}).join('')}</div>`;
 }
 function sponsorForm(){
@@ -596,7 +599,7 @@ function sponsorForm(){
 function renderRules(){
   let ap='';
   if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage Rules</div><div class="ail">${D.rules.map(r=>`<div class="air"><span class="it">${r.title}</span><div class="abr"><button class="ab abe" data-eru="${r.id}">Edit</button><button class="ab abd" data-dru="${r.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-aru>+ Add Rule</button>${editing&&editing.t==='rule'?ruleForm():''}</div>`}
-  return `<div class="pt" style="margin-top:72px">CLAN RULES</div><div class="ps">Know the code. Respect the Korp.</div>${ap}
+  return `<div class="pt" style="margin-top:90px">CLAN RULES</div><div class="ps">Know the code. Respect the Korp.</div>${ap}
     <div>${D.rules.map(r=>`<div class="rcard fade-in"><h3>${r.title}</h3><p>${r.content}</p></div>`).join('')}</div>
     ${!adm?`<div style="text-align:center;margin-top:40px;padding:32px;background:var(--card);border:1px solid var(--border);border-radius:4px"><p style="color:var(--muted);font-size:15px;line-height:1.6;max-width:600px;margin:0 auto">By joining Kim Korp, you agree to follow these rules. Violations may result in warnings, benching, or removal. If you have questions, contact management.</p></div>`:''}`;
 }
@@ -610,7 +613,7 @@ function ruleForm(){
 
 // ========== SUPPORT ==========
 function renderSupport(){
-  return `<div class="pt" style="margin-top:72px">SUPPORT</div><div class="ps">Need help? We've got you.</div>
+  return `<div class="pt" style="margin-top:90px">SUPPORT</div><div class="ps">Need help? We've got you.</div>
     <div class="cta-box fade-in"><div style="font-size:64px;margin-bottom:16px">🎫</div><h3>OPEN A SUPPORT TICKET</h3><p>Having an issue, question, or need assistance? Submit a support ticket through our forum and our team will get back to you as soon as possible.</p><a href="http://unicornmaster.bplaced.net/forumdisplay.php?fid=6" target="_blank" rel="noopener" class="cta-btn">Go to Support Forum →</a></div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:40px">
     <div class="rcard fade-in"><h3 style="font-size:18px">💬 General Questions</h3><p>Questions about the team, membership, or events? Post in the support forum.</p></div>
@@ -623,7 +626,7 @@ function renderSupport(){
 function renderRecruit(){
   let ap='';
   if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage Recruiters</div><div class="ail">${D.recruiters.map(r=>`<div class="air"><span class="it">${r.name}</span><span class="im">${r.role}</span><div class="abr"><button class="ab abe" data-erc="${r.id}">Edit</button><button class="ab abd" data-drc="${r.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-arc>+ Add Recruiter</button>${editing&&editing.t==='recruiter'?recruiterForm():''}</div>`}
-  return `<div class="pt" style="margin-top:72px">RECRUITMENT</div><div class="ps">Think you have what it takes?</div>${ap}
+  return `<div class="pt" style="margin-top:90px">RECRUITMENT</div><div class="ps">Think you have what it takes?</div>${ap}
     <div class="cta-box fade-in" style="margin-top:0;margin-bottom:40px"><div style="font-size:64px;margin-bottom:16px">🌟</div><h3>JOIN KIM KORP</h3><p>We're always looking for talented and dedicated players to join our ranks. Fill out our application form and one of our recruiters will review it.</p><a href="http://unicornmaster.bplaced.net/forumdisplay.php?fid=9" target="_blank" rel="noopener" class="cta-btn">Apply Now →</a></div>
     <div class="tsec"><h2>OUR RECRUITERS</h2><div class="ag">${D.recruiters.map(r=>`<div class="ac fade-in"><div class="aav">${r.image?`<img src="${r.image}">`:'<div class="ph">👤</div>'}</div><div class="ainf"><h4>${r.name}</h4><div class="arl">${r.role}</div><div class="aco">${r.desc}<br><span style="color:var(--accent)">✉ ${r.contact}</span></div></div></div>`).join('')}</div></div>`;
 }
@@ -641,7 +644,7 @@ function recruiterForm(){
 function renderChallenge(){
   let ap='';
   if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage War Managers</div><div class="ail">${D.warmanagers.map(w=>`<div class="air"><span class="it">${w.name}</span><span class="im">${w.role}</span><div class="abr"><button class="ab abe" data-ewm="${w.id}">Edit</button><button class="ab abd" data-dwm="${w.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-awm>+ Add Manager</button>${editing&&editing.t==='warmanager'?wmForm():''}</div>`}
-  return `<div class="pt" style="margin-top:72px">CHALLENGE US</div><div class="ps">Request a war, scrim, or showmatch</div>${ap}
+  return `<div class="pt" style="margin-top:90px">CHALLENGE US</div><div class="ps">Request a war, scrim, or showmatch</div>${ap}
     <div class="cta-box fade-in" style="margin-top:0;margin-bottom:40px"><div style="font-size:64px;margin-bottom:16px">⚔️</div><h3>REQUEST A WAR</h3><p>Think your team can take us on? Contact one of our war managers below to schedule a scrim, clan war, or showmatch. We play Valorant, CS2, and League of Legends.</p></div>
     <div class="tsec"><h2>WAR & PROJECT MANAGEMENT</h2><div class="ag">${D.warmanagers.map(w=>`<div class="ac fade-in"><div class="aav">${w.image?`<img src="${w.image}">`:'<div class="ph">👤</div>'}</div><div class="ainf"><h4>${w.name}</h4><div class="arl">${w.role}</div><div class="aco">${w.desc}<br><span style="color:var(--accent)">✉ ${w.contact}</span></div></div></div>`).join('')}</div></div>
     <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:20px">
