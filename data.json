@@ -319,6 +319,11 @@
       "id": "mmqgrk9obbwd",
       "title": "Multi Memberships",
       "content": "Joining other teams is not allowed without the management consent"
+    },
+    {
+      "id": "mmqgrw06s24u",
+      "title": "Inactivity",
+      "content": "Permanently inactive players that didn't give sign-off notice are removed"
     }
   ],
   "recruiters": [
