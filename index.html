@@ -25,9 +25,9 @@ header{position:fixed;top:0;left:0;right:0;z-index:1000;background:rgba(10,10,15
 .clan-logo{width:52px;height:52px;margin-left:14px;filter:drop-shadow(0 0 10px var(--glow));animation:pulse 2s ease-in-out infinite;flex-shrink:0}
 @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(.9)}}
 nav{display:flex;gap:6px;align-items:center}
-nav button{font-family:var(--ff-body);font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;background:none;border:none;color:var(--muted);padding:10px 20px;cursor:pointer;position:relative;transition:color .3s}
+nav button{font-family:var(--ff-body);font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:none;border:none;color:var(--muted);padding:10px 14px;cursor:pointer;position:relative;transition:color .3s}
 nav button:hover,nav button.active{color:var(--accent)}
-nav button.active::after{content:'';position:absolute;bottom:0;left:20px;right:20px;height:2px;background:var(--grad);border-radius:1px;box-shadow:0 0 10px var(--glow)}
+nav button.active::after{content:'';position:absolute;bottom:0;left:14px;right:14px;height:2px;background:var(--grad);border-radius:1px;box-shadow:0 0 10px var(--glow)}
 .atgl{background:var(--grad)!important;color:#fff!important;border-radius:3px!important;padding:8px 16px!important;font-size:12px!important;margin-left:12px;-webkit-text-fill-color:#fff}
 .atgl.on{background:rgba(255,45,107,.15)!important;border:1px solid var(--accent)!important;color:var(--accent)!important;-webkit-text-fill-color:var(--accent)}
 
@@ -167,6 +167,36 @@ a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .fdr-quote{font-size:18px;font-style:italic;color:var(--text);border-left:3px solid var(--accent);padding-left:20px;margin:20px 0;line-height:1.5}
 .fdr-contact{font-size:14px;color:var(--accent);margin-top:8px}
 @media(max-width:900px){.fdr{grid-template-columns:1fr}.fdr-img{min-height:400px}.fdr-body{padding:28px}}
+/* Rules */
+.rcard{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:32px;margin-bottom:16px;position:relative;transition:all .3s}
+.rcard::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad);border-radius:2px}
+.rcard:hover{border-color:rgba(255,45,107,.2)}
+.rcard h3{font-family:var(--ff-title);font-size:22px;letter-spacing:2px;margin-bottom:10px;color:var(--accent)}
+.rcard p{color:var(--muted);font-size:15px;line-height:1.7}
+/* CTA box */
+.cta-box{background:var(--card);border:1px solid rgba(255,45,107,.2);border-radius:6px;padding:48px;text-align:center;margin-top:40px;position:relative;overflow:hidden}
+.cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.cta-box h3{font-family:var(--ff-title);font-size:32px;letter-spacing:4px;margin-bottom:8px}
+.cta-box p{color:var(--muted);font-size:16px;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6}
+.cta-btn{display:inline-block;font-family:var(--ff-body);font-size:16px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;padding:16px 48px;border-radius:4px;background:var(--grad);color:#fff;transition:all .3s;border:none;cursor:pointer}
+.cta-btn:hover{opacity:.85;transform:translateY(-2px);box-shadow:0 8px 32px var(--glow)}
+/* Partner detail */
+.pd{display:grid;grid-template-columns:1fr;gap:32px}
+.pcard{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;display:grid;grid-template-columns:1fr 280px;transition:all .4s}
+.pcard:hover{border-color:rgba(255,45,107,.2)}
+.pcard-body{padding:32px}
+.pcard-body h3{font-family:var(--ff-title);font-size:28px;letter-spacing:3px;margin-bottom:4px}
+.pcard-tier{font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:16px}
+.pcard-desc{color:var(--muted);font-size:15px;line-height:1.7;margin-bottom:16px}
+.pcard-logo{width:60px;height:60px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:20px;font-weight:900;font-family:var(--ff-head);margin-bottom:16px;overflow:hidden;position:relative}
+.pcard-logo img{width:100%;height:100%;object-fit:contain;position:absolute;inset:0}
+.passoc{background:rgba(255,255,255,.02);border-left:1px solid var(--border);padding:24px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.passoc-img{width:120px;height:120px;border-radius:50%;background:linear-gradient(135deg,#1a0a20,#2d1040);display:flex;align-items:center;justify-content:center;overflow:hidden;margin-bottom:12px;border:2px solid var(--border)}
+.passoc-img img{width:100%;height:100%;object-fit:cover;object-position:top}
+.passoc h4{font-family:var(--ff-title);font-size:18px;letter-spacing:2px;margin-bottom:2px}
+.passoc .pa-role{font-size:12px;color:var(--accent);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:6px}
+.passoc .pa-email{font-size:12px;color:var(--muted)}
+@media(max-width:900px){.pcard{grid-template-columns:1fr}.passoc{border-left:none;border-top:1px solid var(--border);padding:20px}}
 .sg{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:24px}
 .sc{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;position:relative;overflow:hidden}
 .sc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
@@ -274,7 +304,7 @@ footer .soc a:hover{color:var(--accent)}
 const ADMIN_PASSWORD = 'KimKorp2026!';
 // =============================================
 
-let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''}};
+let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''},rules:[],recruiters:[],warmanagers:[]};
 let page='news',mdet=null,adm=false,editing=null,fs={},saving=false,ghToken=localStorage.getItem('kk_gh_token')||'',ghRepo=localStorage.getItem('kk_gh_repo')||'',showLogin=false,siteAuth=false;
 
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
@@ -405,11 +435,11 @@ function bindGate(){
 }
 
 function renderHeader(){
-  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'contact',l:'Team'},{id:'sponsors',l:'Partners'}];
-  return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:var(--ff-body);font-size:14px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:10px 20px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
+  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'contact',l:'Team'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
+  return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:var(--ff-body);font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:10px 14px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
 }
 function renderHero(){return `<section class="hero"><div class="hero-bg"></div><div class="hero-lines"></div><div class="dia"></div><div class="dia"></div><div class="dia"></div><div class="hero-content">${LOGO_SVG('hero')}<h1>KIM KORP</h1><div class="sub">FEMALE ESPORTS COLLECTIVE</div><div class="tag">Queens of the Server — Fear the Korp</div></div></section>`}
-function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,contact:renderContact,sponsors:renderSponsors}[page]||renderNews)()}
+function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,contact:renderContact,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
 
 function renderLoginModal(){
   return `<div class="modal-bg" data-closem><div class="modal" onclick="event.stopPropagation()">
@@ -540,21 +570,94 @@ function squadForm(){
     <div class="fa"><button class="ab abs" data-ss="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
 }
 
-// ========== SPONSORS ==========
+// ========== PARTNERS (enhanced) ==========
 function renderSponsors(){
   let ap='';
-  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage Sponsors</div><div class="ail">${D.sponsors.map(s=>`<div class="air"><span class="it">${s.name}</span><span class="im spt ${trc(s.tier)}">${s.tier}</span><div class="abr"><button class="ab abe" data-esp="${s.id}">Edit</button><button class="ab abd" data-dsp="${s.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-asp>+ Add Sponsor</button>${editing&&editing.t==='sponsor'?sponsorForm():''}</div>`}
-  return `<div class="pt" style="margin-top:72px">PARTNERS & SPONSORS</div><div class="ps">Powered by the best</div>${ap}
-    <div class="spg">${D.sponsors.map(s=>`<div class="spc fade-in"><div class="spl" style="background:${s.color}22;border:2px solid ${s.color}44;color:${s.color}">${s.image?`<img src="${s.image}">`:s.initials}</div><h4>${s.name}</h4><div class="spt ${trc(s.tier)}">${s.tier} Partner</div><div class="spd">${s.desc}</div></div>`).join('')}</div>`;
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage Partners</div><div class="ail">${D.sponsors.map(s=>`<div class="air"><span class="it">${s.name}</span><span class="im spt ${trc(s.tier)}">${s.tier}${s.associate?.name?' · 👤 '+s.associate.name:''}</span><div class="abr"><button class="ab abe" data-esp="${s.id}">Edit</button><button class="ab abd" data-dsp="${s.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-asp>+ Add Partner</button>${editing&&editing.t==='sponsor'?sponsorForm():''}</div>`}
+  return `<div class="pt" style="margin-top:72px">PARTNERS & SPONSORS</div><div class="ps">The organizations that power Kim Korp</div>${ap}
+    <div class="pd">${D.sponsors.map(s=>{const a=s.associate||{};const hasA=a.name;return `<div class="pcard fade-in"><div class="pcard-body"><div class="pcard-logo" style="background:${s.color}22;border:2px solid ${s.color}44;color:${s.color}">${s.image?`<img src="${s.image}">`:s.initials}</div><h3>${s.name}</h3><div class="pcard-tier ${trc(s.tier)}">${s.tier} Partner</div><div class="pcard-desc">${s.desc}</div></div>${hasA?`<div class="passoc"><div class="passoc-img">${a.image?`<img src="${a.image}">`:'<span style="font-size:40px;opacity:.2">👤</span>'}</div><h4>${a.name}</h4><div class="pa-role">${a.role}</div>${a.contact?`<div class="pa-email">✉ ${a.contact}</div>`:''}</div>`:'<div class="passoc" style="opacity:.3;font-size:13px;color:var(--muted)">No associate<br>assigned</div>'}`}).join('')}</div>`;
 }
 function sponsorForm(){
-  const nw=!editing.id;const df={name:'',tier:'Silver',color:'#888888',desc:'',initials:'',image:''};const d=nw?df:D.sponsors.find(s=>s.id===editing.id);if(!d)return '';
-  return `<div class="af" id="spf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD SPONSOR':'EDIT SPONSOR'}</h3>
+  const nw=!editing.id;const df={name:'',tier:'Silver',color:'#888888',desc:'',initials:'',image:'',associate:{name:'',role:'',image:'',contact:''}};const d=nw?df:D.sponsors.find(s=>s.id===editing.id);if(!d)return '';const a=d.associate||{name:'',role:'',image:'',contact:''};
+  return `<div class="af" id="spf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD PARTNER':'EDIT PARTNER'}</h3>
     <div class="fr"><div class="fg"><label>Name</label><input id="fsn2" value="${esc(d.name)}"></div><div class="fg"><label>Tier</label><select id="fti"><option value="Diamond" ${d.tier==='Diamond'?'selected':''}>Diamond</option><option value="Gold" ${d.tier==='Gold'?'selected':''}>Gold</option><option value="Silver" ${d.tier==='Silver'?'selected':''}>Silver</option></select></div></div>
     <div class="fr3"><div class="fg"><label>Initials</label><input id="fin" value="${esc(d.initials)}"></div><div class="fg"><label>Color</label><input type="color" id="fcl" value="${d.color}" style="height:42px"></div><div class="fg"><label>Description</label><input id="fdsc" value="${esc(d.desc)}"></div></div>
     <div class="fg"><label>Logo</label><div class="iua" id="spiu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
     </div><input type="file" id="spif" accept="image/*" style="display:none"></div>
+    <div class="fms"><label style="color:var(--accent2)">Partner Associate / Contact Person</label>
+    <div class="fr" style="margin-top:8px"><div class="fg"><label>Name</label><input id="fan" value="${esc(a.name)}"></div><div class="fg"><label>Role</label><input id="far" value="${esc(a.role)}"></div></div>
+    <div class="fg"><label>Email</label><input id="fac" value="${esc(a.contact)}"></div>
+    <div class="fg"><label>Photo</label><div class="iua" id="saiu">Click to upload${a.image?`<br><img src="${a.image}">`:''}
+    </div><input type="file" id="saif" accept="image/*" style="display:none"></div></div>
     <div class="fa"><button class="ab abs" data-ssp="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+
+// ========== RULES ==========
+function renderRules(){
+  let ap='';
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage Rules</div><div class="ail">${D.rules.map(r=>`<div class="air"><span class="it">${r.title}</span><div class="abr"><button class="ab abe" data-eru="${r.id}">Edit</button><button class="ab abd" data-dru="${r.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-aru>+ Add Rule</button>${editing&&editing.t==='rule'?ruleForm():''}</div>`}
+  return `<div class="pt" style="margin-top:72px">CLAN RULES</div><div class="ps">Know the code. Respect the Korp.</div>${ap}
+    <div>${D.rules.map(r=>`<div class="rcard fade-in"><h3>${r.title}</h3><p>${r.content}</p></div>`).join('')}</div>
+    ${!adm?`<div style="text-align:center;margin-top:40px;padding:32px;background:var(--card);border:1px solid var(--border);border-radius:4px"><p style="color:var(--muted);font-size:15px;line-height:1.6;max-width:600px;margin:0 auto">By joining Kim Korp, you agree to follow these rules. Violations may result in warnings, benching, or removal. If you have questions, contact management.</p></div>`:''}`;
+}
+function ruleForm(){
+  const nw=!editing.id;const df={title:'',content:''};const d=nw?df:D.rules.find(r=>r.id===editing.id);if(!d)return '';
+  return `<div class="af" id="ruf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD RULE':'EDIT RULE'}</h3>
+    <div class="fg"><label>Title</label><input id="frt" value="${esc(d.title)}"></div>
+    <div class="fg"><label>Content</label><textarea id="frc" style="min-height:120px">${esc(d.content)}</textarea></div>
+    <div class="fa"><button class="ab abs" data-sru="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+
+// ========== SUPPORT ==========
+function renderSupport(){
+  return `<div class="pt" style="margin-top:72px">SUPPORT</div><div class="ps">Need help? We've got you.</div>
+    <div class="cta-box fade-in"><div style="font-size:64px;margin-bottom:16px">🎫</div><h3>OPEN A SUPPORT TICKET</h3><p>Having an issue, question, or need assistance? Submit a support ticket through our forum and our team will get back to you as soon as possible.</p><a href="http://unicornmaster.bplaced.net/forumdisplay.php?fid=6" target="_blank" rel="noopener" class="cta-btn">Go to Support Forum →</a></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:40px">
+    <div class="rcard fade-in"><h3 style="font-size:18px">💬 General Questions</h3><p>Questions about the team, membership, or events? Post in the support forum.</p></div>
+    <div class="rcard fade-in"><h3 style="font-size:18px">🐛 Bug Reports</h3><p>Found an issue on the website or our services? Let us know.</p></div>
+    <div class="rcard fade-in"><h3 style="font-size:18px">⚠️ Report a Member</h3><p>Need to report rule violations or misconduct? Tickets are handled confidentially.</p></div>
+    </div>`;
+}
+
+// ========== RECRUIT ==========
+function renderRecruit(){
+  let ap='';
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage Recruiters</div><div class="ail">${D.recruiters.map(r=>`<div class="air"><span class="it">${r.name}</span><span class="im">${r.role}</span><div class="abr"><button class="ab abe" data-erc="${r.id}">Edit</button><button class="ab abd" data-drc="${r.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-arc>+ Add Recruiter</button>${editing&&editing.t==='recruiter'?recruiterForm():''}</div>`}
+  return `<div class="pt" style="margin-top:72px">RECRUITMENT</div><div class="ps">Think you have what it takes?</div>${ap}
+    <div class="cta-box fade-in" style="margin-top:0;margin-bottom:40px"><div style="font-size:64px;margin-bottom:16px">🌟</div><h3>JOIN KIM KORP</h3><p>We're always looking for talented and dedicated players to join our ranks. Fill out our application form and one of our recruiters will review it.</p><a href="http://unicornmaster.bplaced.net/forumdisplay.php?fid=9" target="_blank" rel="noopener" class="cta-btn">Apply Now →</a></div>
+    <div class="tsec"><h2>OUR RECRUITERS</h2><div class="ag">${D.recruiters.map(r=>`<div class="ac fade-in"><div class="aav">${r.image?`<img src="${r.image}">`:'<div class="ph">👤</div>'}</div><div class="ainf"><h4>${r.name}</h4><div class="arl">${r.role}</div><div class="aco">${r.desc}<br><span style="color:var(--accent)">✉ ${r.contact}</span></div></div></div>`).join('')}</div></div>`;
+}
+function recruiterForm(){
+  const nw=!editing.id;const df={name:'',role:'',desc:'',image:'',contact:''};const d=nw?df:D.recruiters.find(r=>r.id===editing.id);if(!d)return '';
+  return `<div class="af" id="rcf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD RECRUITER':'EDIT RECRUITER'}</h3>
+    <div class="fr"><div class="fg"><label>Name</label><input id="frcn" value="${esc(d.name)}"></div><div class="fg"><label>Role</label><input id="frcr" value="${esc(d.role)}"></div></div>
+    <div class="fr"><div class="fg"><label>Email</label><input id="frcc" value="${esc(d.contact)}"></div><div class="fg"><label>Description</label><input id="frcd" value="${esc(d.desc)}"></div></div>
+    <div class="fg"><label>Photo</label><div class="iua" id="rciu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
+    </div><input type="file" id="rcif" accept="image/*" style="display:none"></div>
+    <div class="fa"><button class="ab abs" data-src="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+
+// ========== CHALLENGE ==========
+function renderChallenge(){
+  let ap='';
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Manage War Managers</div><div class="ail">${D.warmanagers.map(w=>`<div class="air"><span class="it">${w.name}</span><span class="im">${w.role}</span><div class="abr"><button class="ab abe" data-ewm="${w.id}">Edit</button><button class="ab abd" data-dwm="${w.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-awm>+ Add Manager</button>${editing&&editing.t==='warmanager'?wmForm():''}</div>`}
+  return `<div class="pt" style="margin-top:72px">CHALLENGE US</div><div class="ps">Request a war, scrim, or showmatch</div>${ap}
+    <div class="cta-box fade-in" style="margin-top:0;margin-bottom:40px"><div style="font-size:64px;margin-bottom:16px">⚔️</div><h3>REQUEST A WAR</h3><p>Think your team can take us on? Contact one of our war managers below to schedule a scrim, clan war, or showmatch. We play Valorant, CS2, and League of Legends.</p></div>
+    <div class="tsec"><h2>WAR & PROJECT MANAGEMENT</h2><div class="ag">${D.warmanagers.map(w=>`<div class="ac fade-in"><div class="aav">${w.image?`<img src="${w.image}">`:'<div class="ph">👤</div>'}</div><div class="ainf"><h4>${w.name}</h4><div class="arl">${w.role}</div><div class="aco">${w.desc}<br><span style="color:var(--accent)">✉ ${w.contact}</span></div></div></div>`).join('')}</div></div>
+    <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:24px;margin-top:20px">
+    <div class="rcard fade-in"><h3 style="font-size:18px">🎮 Scrims</h3><p>Practice matches for skill testing. Flexible scheduling, any game title.</p></div>
+    <div class="rcard fade-in"><h3 style="font-size:18px">⚔️ Clan Wars</h3><p>Official inter-clan competitive matches. Best-of series with map vetoes.</p></div>
+    <div class="rcard fade-in"><h3 style="font-size:18px">🏆 Showmatches</h3><p>Exhibition matches, streamed events, and community challenges.</p></div>
+    </div>`;
+}
+function wmForm(){
+  const nw=!editing.id;const df={name:'',role:'',desc:'',image:'',contact:''};const d=nw?df:D.warmanagers.find(w=>w.id===editing.id);if(!d)return '';
+  return `<div class="af" id="wmf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD MANAGER':'EDIT MANAGER'}</h3>
+    <div class="fr"><div class="fg"><label>Name</label><input id="fwmn" value="${esc(d.name)}"></div><div class="fg"><label>Role</label><input id="fwmr" value="${esc(d.role)}"></div></div>
+    <div class="fr"><div class="fg"><label>Email</label><input id="fwmc" value="${esc(d.contact)}"></div><div class="fg"><label>Description</label><input id="fwmd" value="${esc(d.desc)}"></div></div>
+    <div class="fg"><label>Photo</label><div class="iua" id="wmiu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
+    </div><input type="file" id="wmif" accept="image/*" style="display:none"></div>
+    <div class="fa"><button class="ab abs" data-swm="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
 }
 
 function ghConfigBar(){
@@ -677,20 +780,64 @@ function bindAll(){
     editing=null;fs={};await saveToGitHub();render();
   });
 
-  // === SPONSOR CRUD ===
+  // === SPONSOR/PARTNER CRUD ===
   document.querySelectorAll('[data-asp]').forEach(e=>e.onclick=()=>{editing={t:'sponsor',id:null};fs={};render();document.getElementById('spf')?.scrollIntoView({behavior:'smooth'})});
   document.querySelectorAll('[data-esp]').forEach(e=>e.onclick=()=>{editing={t:'sponsor',id:e.dataset.esp};fs={};render();document.getElementById('spf')?.scrollIntoView({behavior:'smooth'})});
   document.querySelectorAll('[data-dsp]').forEach(e=>e.onclick=async()=>{if(confirm('Delete?')){D.sponsors=D.sponsors.filter(s=>s.id!==e.dataset.dsp);await saveToGitHub();render()}});
   document.querySelectorAll('[data-ssp]').forEach(e=>e.onclick=async()=>{
     const id=e.dataset.ssp,nw=id==='new';
-    const obj={id:nw?uid():id,name:v('fsn2'),tier:document.getElementById('fti').value,color:v('fcl'),desc:v('fdsc'),initials:v('fin'),image:''};
+    const obj={id:nw?uid():id,name:v('fsn2'),tier:document.getElementById('fti').value,color:v('fcl'),desc:v('fdsc'),initials:v('fin'),image:'',associate:{name:v('fan'),role:v('far'),contact:v('fac'),image:''}};
     const fi=document.getElementById('spif');
     if(fi?.files[0])obj.image=await img2b64(fi.files[0]);
     else{const ex=D.sponsors.find(s=>s.id===id);if(ex)obj.image=ex.image}
+    const afi=document.getElementById('saif');
+    if(afi?.files[0])obj.associate.image=await img2b64(afi.files[0]);
+    else{const ex=D.sponsors.find(s=>s.id===id);if(ex?.associate)obj.associate.image=ex.associate.image||''}
     if(nw)D.sponsors.push(obj);else{const i=D.sponsors.findIndex(s=>s.id===id);if(i>=0)D.sponsors[i]=obj}
     editing=null;fs={};await saveToGitHub();render();
   });
-  imgBind('spiu','spif');
+  imgBind('spiu','spif');imgBind('saiu','saif');
+
+  // === RULES CRUD ===
+  document.querySelectorAll('[data-aru]').forEach(e=>e.onclick=()=>{editing={t:'rule',id:null};fs={};render();document.getElementById('ruf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-eru]').forEach(e=>e.onclick=()=>{editing={t:'rule',id:e.dataset.eru};fs={};render();document.getElementById('ruf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-dru]').forEach(e=>e.onclick=async()=>{if(confirm('Delete?')){D.rules=D.rules.filter(r=>r.id!==e.dataset.dru);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-sru]').forEach(e=>e.onclick=async()=>{
+    const id=e.dataset.sru,nw=id==='new';
+    const obj={id:nw?uid():id,title:v('frt'),content:v('frc')};
+    if(nw)D.rules.push(obj);else{const i=D.rules.findIndex(r=>r.id===id);if(i>=0)D.rules[i]=obj}
+    editing=null;fs={};await saveToGitHub();render();
+  });
+
+  // === RECRUITER CRUD ===
+  document.querySelectorAll('[data-arc]').forEach(e=>e.onclick=()=>{editing={t:'recruiter',id:null};fs={};render();document.getElementById('rcf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-erc]').forEach(e=>e.onclick=()=>{editing={t:'recruiter',id:e.dataset.erc};fs={};render();document.getElementById('rcf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-drc]').forEach(e=>e.onclick=async()=>{if(confirm('Delete?')){D.recruiters=D.recruiters.filter(r=>r.id!==e.dataset.drc);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-src]').forEach(e=>e.onclick=async()=>{
+    const id=e.dataset.src,nw=id==='new';
+    const obj={id:nw?uid():id,name:v('frcn'),role:v('frcr'),contact:v('frcc'),desc:v('frcd'),image:''};
+    const fi=document.getElementById('rcif');
+    if(fi?.files[0])obj.image=await img2b64(fi.files[0]);
+    else{const ex=D.recruiters.find(r=>r.id===id);if(ex)obj.image=ex.image}
+    if(nw)D.recruiters.push(obj);else{const i=D.recruiters.findIndex(r=>r.id===id);if(i>=0)D.recruiters[i]=obj}
+    editing=null;fs={};await saveToGitHub();render();
+  });
+  imgBind('rciu','rcif');
+
+  // === WAR MANAGER CRUD ===
+  document.querySelectorAll('[data-awm]').forEach(e=>e.onclick=()=>{editing={t:'warmanager',id:null};fs={};render();document.getElementById('wmf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-ewm]').forEach(e=>e.onclick=()=>{editing={t:'warmanager',id:e.dataset.ewm};fs={};render();document.getElementById('wmf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-dwm]').forEach(e=>e.onclick=async()=>{if(confirm('Delete?')){D.warmanagers=D.warmanagers.filter(w=>w.id!==e.dataset.dwm);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-swm]').forEach(e=>e.onclick=async()=>{
+    const id=e.dataset.swm,nw=id==='new';
+    const obj={id:nw?uid():id,name:v('fwmn'),role:v('fwmr'),contact:v('fwmc'),desc:v('fwmd'),image:''};
+    const fi=document.getElementById('wmif');
+    if(fi?.files[0])obj.image=await img2b64(fi.files[0]);
+    else{const ex=D.warmanagers.find(w=>w.id===id);if(ex)obj.image=ex.image}
+    if(nw)D.warmanagers.push(obj);else{const i=D.warmanagers.findIndex(w=>w.id===id);if(i>=0)D.warmanagers[i]=obj}
+    editing=null;fs={};await saveToGitHub();render();
+  });
+  imgBind('wmiu','wmif');
 }
 
 // ========== INIT ==========
