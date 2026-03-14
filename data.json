@@ -314,6 +314,11 @@
       "id": "mmqgqvsns0r0",
       "title": "Rejoins",
       "content": "Rejoining the team is possible after a reviewing process"
+    },
+    {
+      "id": "mmqgrk9obbwd",
+      "title": "Multi Memberships",
+      "content": "Joining other teams is not allowed without the management consent"
     }
   ],
   "recruiters": [
