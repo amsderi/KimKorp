@@ -193,6 +193,37 @@ a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .tprize .pv{font-family:var(--ff-head);font-size:20px;font-weight:700;color:#00c896;letter-spacing:1px}
 .tprize .pl{font-size:11px;color:var(--muted);letter-spacing:2px;text-transform:uppercase;margin-top:2px}
 @media(max-width:900px){.tcard{grid-template-columns:80px 1fr}.tprize{grid-column:1/-1;text-align:left;padding:0 28px 16px;border-top:1px solid var(--border);padding-top:12px}.trophy-stats{grid-template-columns:1fr}}
+/* Bundesliga */
+.bl-intro{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:32px;margin-bottom:40px;position:relative;overflow:hidden;font-size:16px;color:var(--muted);line-height:1.7}
+.bl-intro::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.blg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}
+.blc{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .4s}
+.blc:hover{border-color:rgba(255,45,107,.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.blc-img{width:100%;height:400px;background:linear-gradient(135deg,#1a0a20,#2d1040);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.blc-img img{width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0}
+.blc-img .ph{font-size:72px;opacity:.2}
+.blc-pos{position:absolute;bottom:12px;right:12px;background:rgba(10,10,15,.85);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:3px;padding:6px 14px;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
+.blc-info{padding:20px}
+.blc-info h4{font-family:var(--ff-title);font-size:24px;letter-spacing:2px;margin-bottom:4px}
+.blc-role{font-size:13px;color:var(--accent2);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:8px}
+.blc-desc{font-size:14px;color:var(--muted);line-height:1.5}
+/* Standings table */
+.blt{width:100%;border-collapse:collapse;margin-bottom:40px;background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden}
+.blt thead{background:rgba(255,255,255,.03)}
+.blt th{font-family:var(--ff-body);font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted);padding:14px 16px;text-align:left;border-bottom:1px solid var(--border)}
+.blt th:first-child{width:50px;text-align:center}
+.blt td{padding:12px 16px;border-bottom:1px solid var(--border);font-size:15px}
+.blt td:first-child{text-align:center;font-family:var(--ff-head);font-weight:700;font-size:14px;color:var(--muted)}
+.blt tr:last-child td{border-bottom:none}
+.blt tr:hover{background:rgba(255,45,107,.03)}
+.blt tr.blt-us{background:rgba(255,45,107,.06)}
+.blt tr.blt-us td{color:var(--accent);font-weight:700}
+.blt tr.blt-us td:first-child{color:var(--accent)}
+.blt .tn-cell{display:flex;align-items:center;gap:10px;font-weight:600}
+.blt .tn-logo{width:24px;height:24px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;flex-shrink:0}
+.blt td.num{font-family:var(--ff-head);font-size:13px;text-align:center;letter-spacing:1px}
+.blt th.num{text-align:center}
+@media(max-width:600px){.blt{font-size:13px}.blt th,.blt td{padding:10px 8px}}
 /* CTA box */
 .cta-box{background:var(--card);border:1px solid rgba(255,45,107,.2);border-radius:6px;padding:48px;text-align:center;margin-top:40px;position:relative;overflow:hidden}
 .cta-box::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
@@ -328,7 +359,7 @@ footer .soc a:hover{color:var(--accent)}
 const ADMIN_PASSWORD = 'KimKorp2026!';
 // =============================================
 
-let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''},rules:[],recruiters:[],warmanagers:[],trophies:[]};
+let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''},rules:[],recruiters:[],warmanagers:[],trophies:[],bundesliga:{intro:'',members:[]}};
 let page='news',mdet=null,adm=false,editing=null,fs={},saving=false,ghToken=localStorage.getItem('kk_gh_token')||'',ghRepo=localStorage.getItem('kk_gh_repo')||'',showLogin=false,siteAuth=false;
 
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
@@ -405,7 +436,7 @@ async function loadData(){
   // Ensure all fields exist for backwards compatibility
   D.news=D.news||[];D.matches=D.matches||[];D.admins=D.admins||[];
   D.squads=D.squads||[];D.sponsors=D.sponsors||[];D.founder=D.founder||{};
-  D.rules=D.rules||[];D.recruiters=D.recruiters||[];D.warmanagers=D.warmanagers||[];D.trophies=D.trophies||[];
+  D.rules=D.rules||[];D.recruiters=D.recruiters||[];D.warmanagers=D.warmanagers||[];D.trophies=D.trophies||[];D.bundesliga=D.bundesliga||{};D.bundesliga.intro=D.bundesliga.intro||'';D.bundesliga.members=D.bundesliga.members||[];D.bundesliga.standings=D.bundesliga.standings||[];
 }
 
 // ========== GITHUB SAVE ==========
@@ -465,11 +496,11 @@ function bindGate(){
 }
 
 function renderHeader(){
-  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'contact',l:'Team'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
+  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'bundesliga',l:'Bundesliga'},{id:'contact',l:'Team'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
   return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:var(--ff-body);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
 }
 function renderHero(){return `<section class="hero"><div class="hero-bg"></div><div class="hero-lines"></div><div class="dia"></div><div class="dia"></div><div class="dia"></div><div class="hero-content">${LOGO_SVG('hero')}<h1>KIM KORP</h1><div class="sub">FEMALE ESPORTS COLLECTIVE</div><div class="tag">Queens of the Server — Fear the Korp</div></div></section>`}
-function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,contact:renderContact,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
+function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,bundesliga:renderBundesliga,contact:renderContact,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
 
 function renderLoginModal(){
   return `<div class="modal-bg" data-closem><div class="modal" onclick="event.stopPropagation()">
@@ -641,6 +672,45 @@ function trophyForm(){
     <div class="fr3"><div class="fg"><label>Placement</label><select id="ftrp"><option value="1st" ${d.place==='1st'?'selected':''}>🥇 1st Place</option><option value="2nd" ${d.place==='2nd'?'selected':''}>🥈 2nd Place</option><option value="3rd" ${d.place==='3rd'?'selected':''}>🥉 3rd Place</option><option value="Top 4" ${d.place==='Top 4'?'selected':''}>Top 4</option><option value="Top 8" ${d.place==='Top 8'?'selected':''}>Top 8</option><option value="Qualifier" ${d.place==='Qualifier'?'selected':''}>Qualifier</option><option value="Participant" ${d.place==='Participant'?'selected':''}>Participant</option></select></div><div class="fg"><label>Date</label><input id="ftrd" value="${esc(d.date)}" placeholder="Feb 10, 2026"></div><div class="fg"><label>Prize (optional)</label><input id="ftrpr" value="${esc(d.prize)}" placeholder="$5,000 / Gaming Chair / etc."></div></div>
     <div class="fg"><label>Description (optional)</label><textarea id="ftrdsc" style="min-height:60px">${esc(d.description)}</textarea></div>
     <div class="fa"><button class="ab abs" data-str="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+
+// ========== BUNDESLIGA ==========
+function renderBundesliga(){
+  const bl=D.bundesliga||{intro:'',members:[],standings:[]};
+  const members=bl.members||[];
+  const st=bl.standings||[];
+  let ap='';
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Bundesliga Team</div>
+    <div class="fg" style="margin-bottom:16px"><label style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">Intro Text</label><textarea id="blIntro" style="font-family:var(--ff-body);font-size:15px;background:var(--bg);border:1px solid var(--border);border-radius:3px;color:var(--text);padding:10px 14px;width:100%;min-height:60px;resize:vertical">${esc(bl.intro)}</textarea><button class="ab abs" style="margin-top:8px" data-sblintro>💾 Save Intro</button></div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px"><label style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">Standings Table</label><div class="ail" style="margin-top:8px">${st.map((s,i)=>`<div class="air"><span class="im">#${i+1}</span><span class="it">${s.team}${s.isUs?' ⭐':''}</span><span class="im">${s.w||0}W ${s.d||0}D ${s.l||0}L · ${s.pts||0}pts</span><div class="abr"><button class="ab abe" data-est="${i}">Edit</button><button class="ab abd" data-dst="${i}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-ast>+ Add Team</button>${editing&&editing.t==='standing'?standingForm():''}</div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px"><label style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">Roster</label><div class="ail" style="margin-top:8px">${members.map(m=>`<div class="air"><span class="it">${m.name}</span><span class="im">${m.role||''} · ${m.position||''}</span><div class="abr"><button class="ab abe" data-ebl="${m.id}">Edit</button><button class="ab abd" data-dbl="${m.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-abl>+ Add Member</button>${editing&&editing.t==='blmember'?blForm():''}</div></div>`}
+
+  const standingsHtml=st.length?`<div class="tsec"><h2>LEAGUE STANDINGS</h2><div style="overflow-x:auto"><table class="blt"><thead><tr><th class="num">#</th><th>Team</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">+/-</th><th class="num">PTS</th></tr></thead><tbody>${st.map((s,i)=>`<tr class="${s.isUs?'blt-us':''} fade-in"><td>${i+1}</td><td><div class="tn-cell"><span class="tn-logo" style="background:${s.color||'#333'};color:#fff">${(s.team||'').substring(0,2).toUpperCase()}</span>${s.team}</div></td><td class="num">${s.w||0}</td><td class="num">${s.d||0}</td><td class="num">${s.l||0}</td><td class="num">${s.gd||'0'}</td><td class="num" style="font-weight:900;${s.isUs?'color:var(--accent)':''}">${s.pts||0}</td></tr>`).join('')}</tbody></table></div></div>`:'';
+
+  return `<div class="pt" style="margin-top:90px">FEMALE ESPORT BUNDESLIGA</div><div class="ps">Our competitive Bundesliga roster</div>${ap}
+    ${bl.intro?`<div class="bl-intro fade-in">${bl.intro}</div>`:''}
+    ${standingsHtml}
+    ${members.length?`<div class="tsec"><h2>OUR ROSTER</h2><div class="blg">${members.map(m=>`<div class="blc fade-in"><div class="blc-img">${m.image?`<img src="${m.image}">`:'<div class="ph">👤</div>'}${m.position?`<div class="blc-pos">${m.position}</div>`:''}</div><div class="blc-info"><h4>${m.name}</h4>${m.role?`<div class="blc-role">${m.role}</div>`:''}${m.desc?`<div class="blc-desc">${m.desc}</div>`:''}</div></div>`).join('')}</div></div>`:`<div style="text-align:center;padding:60px;color:var(--muted);font-size:16px">Roster coming soon...</div>`}`;
+}
+function standingForm(){
+  const nw=editing.idx===undefined||editing.idx===null;
+  const df={team:'',w:0,d:0,l:0,gd:'0',pts:0,color:'#888888',isUs:false};
+  const st=D.bundesliga.standings||[];
+  const d=nw?df:st[editing.idx];if(!d)return '';
+  return `<div class="af" id="stf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD TEAM':'EDIT TEAM'}</h3>
+    <div class="fr"><div class="fg"><label>Team Name</label><input id="fstt" value="${esc(d.team)}"></div><div class="fg"><label>Color</label><input type="color" id="fstc" value="${d.color||'#888888'}" style="height:42px"></div></div>
+    <div class="fr3"><div class="fg"><label>Wins</label><input type="number" id="fstw" value="${d.w||0}"></div><div class="fg"><label>Draws</label><input type="number" id="fstd" value="${d.d||0}"></div><div class="fg"><label>Losses</label><input type="number" id="fstl" value="${d.l||0}"></div></div>
+    <div class="fr3"><div class="fg"><label>Goal Diff (+/-)</label><input id="fstgd" value="${esc(d.gd||'0')}"></div><div class="fg"><label>Points</label><input type="number" id="fstp" value="${d.pts||0}"></div><div class="fg"><label>Is our team?</label><select id="fstu"><option value="0" ${!d.isUs?'selected':''}>No</option><option value="1" ${d.isUs?'selected':''}>Yes ⭐</option></select></div></div>
+    <div class="fa"><button class="ab abs" data-sst="${nw?'new':editing.idx}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+function blForm(){
+  const nw=!editing.id;const df={name:'',role:'',position:'',desc:'',image:''};const d=nw?df:(D.bundesliga.members||[]).find(m=>m.id===editing.id);if(!d)return '';
+  return `<div class="af" id="blf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD MEMBER':'EDIT MEMBER'}</h3>
+    <div class="fr"><div class="fg"><label>Name / Gamertag</label><input id="fbln" value="${esc(d.name)}"></div><div class="fg"><label>Role (e.g. Captain, Coach, Sub)</label><input id="fblr" value="${esc(d.role)}"></div></div>
+    <div class="fr"><div class="fg"><label>Position (e.g. Duelist, AWPer, Mid)</label><input id="fblp" value="${esc(d.position)}"></div><div class="fg"><label>Short Bio (optional)</label><input id="fbld" value="${esc(d.desc)}"></div></div>
+    <div class="fg"><label>Profile Picture</label><div class="iua" id="bliu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
+    </div><input type="file" id="blif" accept="image/*" style="display:none"></div>
+    <div class="fa"><button class="ab abs" data-sbl="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
 }
 
 // ========== RULES ==========
@@ -848,6 +918,42 @@ function bindAll(){
     editing=null;fs={};await saveToGitHub();render();
   });
   imgBind('spiu','spif');imgBind('saiu','saif');
+
+  // === BUNDESLIGA CRUD ===
+  document.querySelectorAll('[data-sblintro]').forEach(e=>e.onclick=async()=>{
+    if(!D.bundesliga)D.bundesliga={intro:'',members:[],standings:[]};
+    D.bundesliga.intro=document.getElementById('blIntro')?.value||'';
+    await saveToGitHub();render();
+  });
+  // Standings
+  document.querySelectorAll('[data-ast]').forEach(e=>e.onclick=()=>{editing={t:'standing',idx:null};fs={};render();document.getElementById('stf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-est]').forEach(e=>e.onclick=()=>{editing={t:'standing',idx:parseInt(e.dataset.est)};fs={};render();document.getElementById('stf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-dst]').forEach(e=>e.onclick=async()=>{if(confirm('Remove team?')){D.bundesliga.standings.splice(parseInt(e.dataset.dst),1);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-sst]').forEach(e=>e.onclick=async()=>{
+    const idx=e.dataset.sst,nw=idx==='new';
+    if(!D.bundesliga.standings)D.bundesliga.standings=[];
+    const obj={team:v('fstt'),color:v('fstc'),w:parseInt(v('fstw'))||0,d:parseInt(v('fstd'))||0,l:parseInt(v('fstl'))||0,gd:v('fstgd'),pts:parseInt(v('fstp'))||0,isUs:document.getElementById('fstu').value==='1'};
+    if(nw)D.bundesliga.standings.push(obj);else D.bundesliga.standings[parseInt(idx)]=obj;
+    // Sort by points descending
+    D.bundesliga.standings.sort((a,b)=>(b.pts||0)-(a.pts||0));
+    editing=null;fs={};await saveToGitHub();render();
+  });
+  // Members
+  document.querySelectorAll('[data-abl]').forEach(e=>e.onclick=()=>{editing={t:'blmember',id:null};fs={};render();document.getElementById('blf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-ebl]').forEach(e=>e.onclick=()=>{editing={t:'blmember',id:e.dataset.ebl};fs={};render();document.getElementById('blf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-dbl]').forEach(e=>e.onclick=async()=>{if(confirm('Delete?')){D.bundesliga.members=D.bundesliga.members.filter(m=>m.id!==e.dataset.dbl);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-sbl]').forEach(e=>e.onclick=async()=>{
+    const id=e.dataset.sbl,nw=id==='new';
+    if(!D.bundesliga)D.bundesliga={intro:'',members:[]};
+    if(!D.bundesliga.members)D.bundesliga.members=[];
+    const obj={id:nw?uid():id,name:v('fbln'),role:v('fblr'),position:v('fblp'),desc:v('fbld'),image:''};
+    const fi=document.getElementById('blif');
+    if(fi?.files[0])obj.image=await img2b64(fi.files[0]);
+    else{const ex=D.bundesliga.members.find(m=>m.id===id);if(ex)obj.image=ex.image}
+    if(nw)D.bundesliga.members.push(obj);else{const i=D.bundesliga.members.findIndex(m=>m.id===id);if(i>=0)D.bundesliga.members[i]=obj}
+    editing=null;fs={};await saveToGitHub();render();
+  });
+  imgBind('bliu','blif');
 
   // === TROPHY CRUD ===
   document.querySelectorAll('[data-atr]').forEach(e=>e.onclick=()=>{editing={t:'trophy',id:null};fs={};render();document.getElementById('trf')?.scrollIntoView({behavior:'smooth'})});
