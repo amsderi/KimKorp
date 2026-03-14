@@ -376,9 +376,12 @@ function LOGO_SVG(mode){
 async function loadData(){
   try{
     const r=await fetch('data.json?t='+Date.now());
-    if(r.ok){D=await r.json();return}
-  }catch(e){}
-  toast('Could not load data.json',false);
+    if(r.ok){D=await r.json()}
+  }catch(e){toast('Could not load data.json',false)}
+  // Ensure all fields exist for backwards compatibility
+  D.news=D.news||[];D.matches=D.matches||[];D.admins=D.admins||[];
+  D.squads=D.squads||[];D.sponsors=D.sponsors||[];D.founder=D.founder||{};
+  D.rules=D.rules||[];D.recruiters=D.recruiters||[];D.warmanagers=D.warmanagers||[];
 }
 
 // ========== GITHUB SAVE ==========
