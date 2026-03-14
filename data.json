@@ -24,7 +24,28 @@
       "date": "Mar 14, 2026",
       "score": "TBD",
       "result": "win",
-      "maps": [],
+      "maps": [
+        {
+          "name": "1v1",
+          "our": 7,
+          "their": 1
+        },
+        {
+          "name": "2v2",
+          "our": 5,
+          "their": 7
+        },
+        {
+          "name": "3v3",
+          "our": 7,
+          "their": 6
+        },
+        {
+          "name": "5v5",
+          "our": 7,
+          "their": 3
+        }
+      ],
       "picks": [],
       "bans": [],
       "oppPicks": [],
