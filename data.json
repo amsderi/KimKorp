@@ -754,6 +754,16 @@
         "gd": "0",
         "pts": 1,
         "isUs": true
+      },
+      {
+        "team": "Frankfurt 69ers",
+        "color": "#888888",
+        "w": 0,
+        "d": 0,
+        "l": 0,
+        "gd": "0",
+        "pts": 0,
+        "isUs": false
       }
     ]
   }
