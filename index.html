@@ -630,10 +630,10 @@ function renderBundesliga(){
   let ap='';
   if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Bundesliga Team</div>
     <div class="fg" style="margin-bottom:16px"><label style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">Intro Text</label><textarea id="blIntro" style="font-family:var(--ff-body);font-size:15px;background:var(--bg);border:1px solid var(--border);border-radius:3px;color:var(--text);padding:10px 14px;width:100%;min-height:60px;resize:vertical">${esc(bl.intro)}</textarea><button class="ab abs" style="margin-top:8px" data-sblintro>💾 Save Intro</button></div>
-    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px"><label style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">Standings Table</label><div class="ail" style="margin-top:8px">${st.map((s,i)=>`<div class="air"><span class="im">#${i+1}</span><span class="it">${s.team}${s.isUs?' ⭐':''}</span><span class="im">${s.w||0}W ${s.d||0}D ${s.l||0}L · ${s.pts||0}pts</span><div class="abr"><button class="ab abe" data-est="${i}">Edit</button><button class="ab abd" data-dst="${i}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-ast>+ Add Team</button>${editing&&editing.t==='standing'?standingForm():''}</div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:8px"><label style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">Standings Table</label><div class="ail" style="margin-top:8px">${st.map((s,i)=>`<div class="air"><span class="im">#${i+1}</span><span class="it">${s.team}${s.isUs?' ⭐':''}</span><span class="im">${s.w||0}W ${s.d||0}D ${s.l||0}L · ${s.pts||0}pts${s.logo?' · 🖼️':''}</span><div class="abr"><button class="ab abe" data-est="${i}">Edit</button><button class="ab abd" data-dst="${i}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-ast>+ Add Team</button>${editing&&editing.t==='standing'?standingForm():''}</div>
     <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px"><label style="font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--muted)">Roster</label><div class="ail" style="margin-top:8px">${members.map(m=>`<div class="air"><span class="it">${m.name}</span><span class="im">${m.role||''} · ${m.position||''}</span><div class="abr"><button class="ab abe" data-ebl="${m.id}">Edit</button><button class="ab abd" data-dbl="${m.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-abl>+ Add Member</button>${editing&&editing.t==='blmember'?blForm():''}</div></div>`}
 
-  const standingsHtml=st.length?`<div class="tsec"><h2>LEAGUE STANDINGS</h2><div style="overflow-x:auto"><table class="blt"><thead><tr><th class="num">#</th><th>Team</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">+/-</th><th class="num">PTS</th></tr></thead><tbody>${st.map((s,i)=>`<tr class="${s.isUs?'blt-us':''} fade-in"><td>${i+1}</td><td><div class="tn-cell"><span class="tn-logo" style="${s.isUs?'background:transparent':'background:'+(s.color||'#333')+';color:#fff'}">${s.isUs?'<img src="logo.png" style="width:100%;height:100%;object-fit:contain">':(s.team||'').substring(0,2).toUpperCase()}</span>${s.team}</div></td><td class="num">${s.w||0}</td><td class="num">${s.d||0}</td><td class="num">${s.l||0}</td><td class="num">${s.gd||'0'}</td><td class="num" style="font-weight:900;${s.isUs?'color:var(--accent)':''}">${s.pts||0}</td></tr>`).join('')}</tbody></table></div></div>`:'';
+  const standingsHtml=st.length?`<div class="tsec"><h2>LEAGUE STANDINGS</h2><div style="overflow-x:auto"><table class="blt"><thead><tr><th class="num">#</th><th>Team</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">+/-</th><th class="num">PTS</th></tr></thead><tbody>${st.map((s,i)=>`<tr class="${s.isUs?'blt-us':''} fade-in"><td>${i+1}</td><td><div class="tn-cell"><span class="tn-logo" style="${s.isUs?'background:transparent':s.logo?'background:transparent':'background:'+(s.color||'#333')+';color:#fff'}">${s.isUs?'<img src="logo.png" style="width:100%;height:100%;object-fit:contain">':s.logo?'<img src="'+s.logo+'" style="width:100%;height:100%;object-fit:contain">':(s.team||'').substring(0,2).toUpperCase()}</span>${s.team}</div></td><td class="num">${s.w||0}</td><td class="num">${s.d||0}</td><td class="num">${s.l||0}</td><td class="num">${s.gd||'0'}</td><td class="num" style="font-weight:900;${s.isUs?'color:var(--accent)':''}">${s.pts||0}</td></tr>`).join('')}</tbody></table></div></div>`:'';
 
   return `<div class="pt" style="margin-top:90px">FEMALE ESPORT BUNDESLIGA</div><div class="ps">Our competitive Bundesliga roster</div>${ap}
     ${bl.intro?`<div class="bl-intro fade-in">${bl.intro}</div>`:''}
@@ -649,6 +649,8 @@ function standingForm(){
     <div class="fr"><div class="fg"><label>Team Name</label><input id="fstt" value="${esc(d.team)}"></div><div class="fg"><label>Color</label><input type="color" id="fstc" value="${d.color||'#888888'}" style="height:42px"></div></div>
     <div class="fr3"><div class="fg"><label>Wins</label><input type="number" id="fstw" value="${d.w||0}"></div><div class="fg"><label>Draws</label><input type="number" id="fstd" value="${d.d||0}"></div><div class="fg"><label>Losses</label><input type="number" id="fstl" value="${d.l||0}"></div></div>
     <div class="fr3"><div class="fg"><label>Goal Diff (+/-)</label><input id="fstgd" value="${esc(d.gd||'0')}"></div><div class="fg"><label>Points</label><input type="number" id="fstp" value="${d.pts||0}"></div><div class="fg"><label>Is our team?</label><select id="fstu"><option value="0" ${!d.isUs?'selected':''}>No</option><option value="1" ${d.isUs?'selected':''}>Yes ⭐</option></select></div></div>
+    <div class="fg"><label>Team Logo</label><div class="iua" id="stiu">Click to upload${d.logo?`<br><img src="${d.logo}">`:''}
+    </div><input type="file" id="stif" accept="image/*" style="display:none"></div>
     <div class="fa"><button class="ab abs" data-sst="${nw?'new':editing.idx}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
 }
 function blForm(){
@@ -880,12 +882,16 @@ function bindAll(){
   document.querySelectorAll('[data-sst]').forEach(e=>e.onclick=async()=>{
     const idx=e.dataset.sst,nw=idx==='new';
     if(!D.bundesliga.standings)D.bundesliga.standings=[];
-    const obj={team:v('fstt'),color:v('fstc'),w:parseInt(v('fstw'))||0,d:parseInt(v('fstd'))||0,l:parseInt(v('fstl'))||0,gd:v('fstgd'),pts:parseInt(v('fstp'))||0,isUs:document.getElementById('fstu').value==='1'};
+    const obj={team:v('fstt'),color:v('fstc'),w:parseInt(v('fstw'))||0,d:parseInt(v('fstd'))||0,l:parseInt(v('fstl'))||0,gd:v('fstgd'),pts:parseInt(v('fstp'))||0,isUs:document.getElementById('fstu').value==='1',logo:''};
+    const fi=document.getElementById('stif');
+    if(fi?.files[0])obj.logo=await img2b64(fi.files[0]);
+    else if(!nw){const ex=D.bundesliga.standings[parseInt(idx)];if(ex)obj.logo=ex.logo||''}
     if(nw)D.bundesliga.standings.push(obj);else D.bundesliga.standings[parseInt(idx)]=obj;
     // Sort by points descending
     D.bundesliga.standings.sort((a,b)=>(b.pts||0)-(a.pts||0));
     editing=null;fs={};await saveToGitHub();render();
   });
+  imgBind('stiu','stif');
   // Members
   document.querySelectorAll('[data-abl]').forEach(e=>e.onclick=()=>{editing={t:'blmember',id:null};fs={};render();document.getElementById('blf')?.scrollIntoView({behavior:'smooth'})});
   document.querySelectorAll('[data-ebl]').forEach(e=>e.onclick=()=>{editing={t:'blmember',id:e.dataset.ebl};fs={};render();document.getElementById('blf')?.scrollIntoView({behavior:'smooth'})});
