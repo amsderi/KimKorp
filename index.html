@@ -231,6 +231,27 @@ a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .cta-box p{color:var(--muted);font-size:16px;margin-bottom:24px;max-width:600px;margin-left:auto;margin-right:auto;line-height:1.6}
 .cta-btn{display:inline-block;font-family:var(--ff-body);font-size:16px;font-weight:700;letter-spacing:3px;text-transform:uppercase;text-decoration:none;padding:16px 48px;border-radius:4px;background:var(--grad);color:#fff;transition:all .3s;border:none;cursor:pointer}
 .cta-btn:hover{opacity:.85;transform:translateY(-2px);box-shadow:0 8px 32px var(--glow)}
+/* About */
+.ab-hero{position:relative;background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;padding:60px 48px;margin-bottom:48px;text-align:center}
+.ab-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.ab-hero img{width:180px;height:180px;object-fit:contain;filter:drop-shadow(0 0 30px var(--glow));margin-bottom:24px}
+.ab-hero h2{font-family:var(--ff-title);font-size:42px;letter-spacing:5px;margin-bottom:8px}
+.ab-hero .ab-sub{color:var(--accent);font-size:15px;font-weight:700;letter-spacing:3px;text-transform:uppercase}
+.ab-story{max-width:860px;margin:0 auto}
+.ab-chapter{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:40px 44px;margin-bottom:24px;position:relative;overflow:hidden;transition:all .3s}
+.ab-chapter::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:var(--grad)}
+.ab-chapter:hover{border-color:rgba(232,67,147,.2)}
+.ab-chapter h3{font-family:var(--ff-title);font-size:26px;letter-spacing:3px;margin-bottom:6px;color:var(--accent)}
+.ab-chapter .ch-year{font-size:12px;font-weight:700;letter-spacing:3px;text-transform:uppercase;color:var(--muted);margin-bottom:16px}
+.ab-chapter p{color:var(--muted);font-size:16px;line-height:1.8}
+.ab-chapter .ch-quote{font-size:18px;font-style:italic;color:var(--text);border-left:3px solid var(--accent);padding-left:20px;margin:20px 0;line-height:1.6}
+.ab-values{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:24px;margin-top:48px}
+.ab-val{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:32px;text-align:center;transition:all .3s}
+.ab-val:hover{border-color:rgba(232,67,147,.2);transform:translateY(-4px)}
+.ab-val .vi{font-size:40px;margin-bottom:12px}
+.ab-val h4{font-family:var(--ff-title);font-size:20px;letter-spacing:2px;margin-bottom:8px}
+.ab-val p{color:var(--muted);font-size:14px;line-height:1.6}
+@media(max-width:900px){.ab-hero{padding:40px 24px}.ab-chapter{padding:28px 24px}}
 /* Partner detail */
 .pd{display:flex;flex-direction:column;gap:32px}
 .pcard{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .4s}
@@ -444,11 +465,11 @@ function bindGate(){
 }
 
 function renderHeader(){
-  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'bundesliga',l:'Bundesliga'},{id:'contact',l:'Team'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
+  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'bundesliga',l:'Bundesliga'},{id:'contact',l:'Team'},{id:'aboutus',l:'About'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
   return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:var(--ff-body);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
 }
 function renderHero(){return `<section class="hero"><div class="hero-bg"></div><div class="hero-lines"></div><div class="dia"></div><div class="dia"></div><div class="dia"></div><div class="hero-content">${LOGO_SVG('hero')}<h1>KIM KORP</h1><div class="sub">FEMALE ESPORTS COLLECTIVE</div><div class="tag">Queens of the Server — Fear the Korp</div></div></section>`}
-function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,bundesliga:renderBundesliga,contact:renderContact,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
+function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,bundesliga:renderBundesliga,contact:renderContact,aboutus:renderAbout,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
 
 function renderLoginModal(){
   return `<div class="modal-bg" data-closem><div class="modal" onclick="event.stopPropagation()">
@@ -661,6 +682,32 @@ function blForm(){
     <div class="fg"><label>Profile Picture</label><div class="iua" id="bliu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
     </div><input type="file" id="blif" accept="image/*" style="display:none"></div>
     <div class="fa"><button class="ab abs" data-sbl="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+
+// ========== ABOUT US ==========
+function renderAbout(){
+  return `<div class="pt" style="margin-top:90px">ABOUT US</div><div class="ps">The story behind Kim Korp</div>
+
+    <div class="ab-hero fade-in"><img src="logo.png" alt="Kim Korp"><h2>KIM KORP.</h2><div class="ab-sub">Est. 2023 — Female Esports Collective</div></div>
+
+    <div class="ab-story">
+    <div class="ab-chapter fade-in"><div class="ch-year">The Beginning — 2023</div><h3>A SPARK FROM A STREAM</h3><p>It all started with a late-night Twitch stream. Kim K. — who had never touched competitive gaming before — stumbled upon a female esports tournament while scrolling through channels. Something clicked. The energy, the teamwork, the raw skill on display — it was electrifying. She watched the entire broadcast, and by the time it ended, a seed had been planted.</p><div class="ch-quote">"I saw these women compete at the highest level and thought — why isn't this bigger? Why aren't there more teams like this? That night, I decided I was going to change that."</div><p>Within weeks, Kim had immersed herself in the scene. She spent every free moment learning about team management, scouting talent, and understanding the esports ecosystem. She reached out to players, coaches, and community figures — not as a gamer, but as someone with a vision.</p></div>
+
+    <div class="ab-chapter fade-in"><div class="ch-year">The First Roster — 2023</div><h3>BUILDING THE KORP</h3><p>Kim Korp started small — a five-player Valorant roster assembled from ranked matchmaking and amateur leagues. The players didn't have sponsors, didn't have a bootcamp, and didn't have a salary. What they had was hunger, chemistry, and a leader who believed in them unconditionally.</p><p>The team's first tournament was a community cup with 32 teams. They placed third. Not a trophy, but proof of concept. The players were talented, the structure was working, and word was spreading. Within months, Kim Korp had a growing reputation as the scrappy underdog that nobody wanted to face.</p></div>
+
+    <div class="ab-chapter fade-in"><div class="ch-year">The Dream — 2024</div><h3>BIGGER THAN A TEAM</h3><p>After tasting competitive success, Kim realized something: this couldn't just be about one roster. Female esports was underserved, underfunded, and overlooked in nearly every region. Players with incredible talent were stuck in ranked queues with no path to professional play. Kim decided that Kim Korp would become the bridge.</p><div class="ch-quote">"I don't care where you come from, how much money you have, or what you look like. If you have the skill and the drive, there's a spot for you in the Korp. Esports should be for everyone — and we're going to prove it."</div><p>The organization expanded to CS2 and League of Legends, recruiting players from across Europe, Asia, and beyond. Every roster was built on the same principle: pure merit. No politics, no gatekeeping — just talent and dedication.</p></div>
+
+    <div class="ab-chapter fade-in"><div class="ch-year">Going Global — 2025</div><h3>FEAR THE KORP</h3><p>By 2025, Kim Korp had become a recognized name in the female esports circuit. The Valorant squad was competing in GC Championships, the CS2 roster was battling in ESL Impact, and the League of Legends team was climbing through the GLL Women's League. Sponsors took notice. Partners came on board. The community grew.</p><p>But the most important milestone wasn't a trophy or a sponsorship deal — it was the messages. Players from Brazil, Korea, Nigeria, Germany, and everywhere in between were reaching out, asking how to join, how to try out, how to be part of something that actually cared about them as people first and players second.</p></div>
+
+    <div class="ab-chapter fade-in"><div class="ch-year">Today & Tomorrow — 2026</div><h3>THIS IS ONLY THE BEGINNING</h3><p>Kim Korp now fields multiple squads across three game titles, competes in the Female Esport Bundesliga, and has a growing international presence. But for Kim, the mission hasn't changed since that first night watching a stream: make female esports bigger, more accessible, and more inclusive than anyone thought possible.</p><div class="ch-quote">"We're not building a team. We're building a movement. Every player who puts on the Kim Korp tag carries that mission with them. We don't just play the game — we change it."</div><p>The Korp is always growing. The door is always open. And the dream? It's just getting started.</p></div>
+    </div>
+
+    <div class="ab-values">
+    <div class="ab-val fade-in"><div class="vi">🌍</div><h4>GLOBAL</h4><p>Players from every corner of the world. No borders, no barriers — just a shared love for competition.</p></div>
+    <div class="ab-val fade-in"><div class="vi">🤝</div><h4>INCLUSIVE</h4><p>Regardless of race, ethnicity, money, or status. Your skill and your character are all that matter here.</p></div>
+    <div class="ab-val fade-in"><div class="vi">👑</div><h4>EMPOWERING</h4><p>We exist to give female gamers the platform, structure, and support they deserve to compete at the highest level.</p></div>
+    <div class="ab-val fade-in"><div class="vi">🔥</div><h4>RELENTLESS</h4><p>We play to win. Every scrim, every tournament, every day. The Korp doesn't settle for second best.</p></div>
+    </div>`;
 }
 
 // ========== RULES ==========
