@@ -252,6 +252,38 @@ a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .ab-val h4{font-family:var(--ff-title);font-size:20px;letter-spacing:2px;margin-bottom:8px}
 .ab-val p{color:var(--muted);font-size:14px;line-height:1.6}
 @media(max-width:900px){.ab-hero{padding:40px 24px}.ab-chapter{padding:28px 24px}}
+/* Tech */
+.tech-hero{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;padding:48px;margin-bottom:48px;position:relative;text-align:center}
+.tech-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
+.tech-hero::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 30%,rgba(232,67,147,.06),transparent);pointer-events:none}
+.tech-hero h2{font-family:var(--ff-title);font-size:36px;letter-spacing:5px;margin-bottom:8px;position:relative}
+.tech-hero p{color:var(--muted);font-size:16px;line-height:1.7;max-width:700px;margin:0 auto;position:relative}
+.tech-icons{display:flex;justify-content:center;gap:24px;margin-bottom:24px;position:relative}
+.tech-icons span{font-size:32px;opacity:.6}
+.tech-roles{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:16px;margin-bottom:48px}
+.tech-role{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:24px;text-align:center;position:relative;overflow:hidden;transition:all .3s}
+.tech-role::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--grad);transform:scaleX(0);transform-origin:left;transition:transform .4s}
+.tech-role:hover::before{transform:scaleX(1)}
+.tech-role:hover{border-color:rgba(232,67,147,.2)}
+.tech-role .tri{font-size:28px;margin-bottom:8px}
+.tech-role h4{font-family:var(--ff-title);font-size:18px;letter-spacing:2px;margin-bottom:4px}
+.tech-role p{color:var(--muted);font-size:13px;line-height:1.5}
+.tg2{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}
+.tc2{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .4s;position:relative}
+.tc2::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad);opacity:0;transition:opacity .3s}
+.tc2:hover::before{opacity:1}
+.tc2:hover{border-color:rgba(232,67,147,.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.tc2-img{width:100%;height:360px;background:linear-gradient(135deg,#150a18,#2a1238);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.tc2-img img{width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0}
+.tc2-img .ph{font-size:72px;opacity:.15}
+.tc2-badge{position:absolute;top:12px;right:12px;background:rgba(10,8,16,.85);backdrop-filter:blur(8px);border:1px solid var(--border);border-radius:3px;padding:5px 12px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:var(--accent)}
+.tc2-info{padding:20px}
+.tc2-info h4{font-family:var(--ff-title);font-size:24px;letter-spacing:2px;margin-bottom:4px}
+.tc2-spec{font-size:13px;color:var(--accent);font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.tc2-role{font-size:12px;color:var(--accent2);font-weight:600;letter-spacing:1px;margin-bottom:10px}
+.tc2-desc{font-size:14px;color:var(--muted);line-height:1.5}
+.tc2-stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
+.tc2-tag{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:2px;background:rgba(232,67,147,.08);border:1px solid rgba(232,67,147,.15);color:var(--accent)}
 /* Partner detail */
 .pd{display:flex;flex-direction:column;gap:32px}
 .pcard{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .4s}
@@ -380,7 +412,7 @@ footer .soc a:hover{color:var(--accent)}
 const ADMIN_PASSWORD = 'KimKorp2026!';
 // =============================================
 
-let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''},rules:[],recruiters:[],warmanagers:[],trophies:[],bundesliga:{intro:'',members:[]}};
+let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''},rules:[],recruiters:[],warmanagers:[],trophies:[],bundesliga:{intro:'',members:[]},techteam:[]};
 let page='news',mdet=null,adm=false,editing=null,fs={},saving=false,ghToken=localStorage.getItem('kk_gh_token')||'',ghRepo=localStorage.getItem('kk_gh_repo')||'',showLogin=false,siteAuth=false;
 
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
@@ -405,7 +437,7 @@ async function loadData(){
   // Ensure all fields exist for backwards compatibility
   D.news=D.news||[];D.matches=D.matches||[];D.admins=D.admins||[];
   D.squads=D.squads||[];D.sponsors=D.sponsors||[];D.founder=D.founder||{};
-  D.rules=D.rules||[];D.recruiters=D.recruiters||[];D.warmanagers=D.warmanagers||[];D.trophies=D.trophies||[];D.bundesliga=D.bundesliga||{};D.bundesliga.intro=D.bundesliga.intro||'';D.bundesliga.members=D.bundesliga.members||[];D.bundesliga.standings=D.bundesliga.standings||[];
+  D.rules=D.rules||[];D.recruiters=D.recruiters||[];D.warmanagers=D.warmanagers||[];D.trophies=D.trophies||[];D.bundesliga=D.bundesliga||{};D.bundesliga.intro=D.bundesliga.intro||'';D.bundesliga.members=D.bundesliga.members||[];D.bundesliga.standings=D.bundesliga.standings||[];D.techteam=D.techteam||[];
 }
 
 // ========== GITHUB SAVE ==========
@@ -465,11 +497,11 @@ function bindGate(){
 }
 
 function renderHeader(){
-  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'bundesliga',l:'Bundesliga'},{id:'contact',l:'Team'},{id:'aboutus',l:'About'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
+  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'bundesliga',l:'Bundesliga'},{id:'contact',l:'Team'},{id:'tech',l:'Tech'},{id:'aboutus',l:'About'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
   return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:var(--ff-body);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
 }
 function renderHero(){return `<section class="hero"><div class="hero-bg"></div><div class="hero-lines"></div><div class="dia"></div><div class="dia"></div><div class="dia"></div><div class="hero-content">${LOGO_SVG('hero')}<h1>KIM KORP</h1><div class="sub">FEMALE ESPORTS COLLECTIVE</div><div class="tag">Queens of the Server — Fear the Korp</div></div></section>`}
-function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,bundesliga:renderBundesliga,contact:renderContact,aboutus:renderAbout,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
+function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,bundesliga:renderBundesliga,contact:renderContact,tech:renderTech,aboutus:renderAbout,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
 
 function renderLoginModal(){
   return `<div class="modal-bg" data-closem><div class="modal" onclick="event.stopPropagation()">
@@ -682,6 +714,37 @@ function blForm(){
     <div class="fg"><label>Profile Picture</label><div class="iua" id="bliu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
     </div><input type="file" id="blif" accept="image/*" style="display:none"></div>
     <div class="fa"><button class="ab abs" data-sbl="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+
+// ========== TECH TEAM ==========
+function renderTech(){
+  const t=D.techteam||[];
+  let ap='';
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Tech Team</div><div class="ail">${t.map(m=>`<div class="air"><span class="it">${m.name}</span><span class="im">${m.specialty||''} · ${m.role||''}</span><div class="abr"><button class="ab abe" data-ett="${m.id}">Edit</button><button class="ab abd" data-dtt="${m.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-att>+ Add Member</button>${editing&&editing.t==='techteam'?techForm():''}</div>`}
+  return `<div class="pt" style="margin-top:90px">TECH & INFRASTRUCTURE</div><div class="ps">The engineers behind the empire</div>${ap}
+
+    <div class="tech-hero fade-in"><div class="tech-icons"><span>🖥️</span><span>⚙️</span><span>🛡️</span><span>🌐</span><span>💾</span></div><h2>POWERED BY PASSION & CODE</h2><p>Behind every smooth tournament stream, every secure server, and every pixel of this website stands a dedicated tech team. These are the people who keep Kim Korp running — building the infrastructure, maintaining the systems, and engineering the digital backbone of a growing esports organization.</p></div>
+
+    <div class="tech-roles">
+    <div class="tech-role fade-in"><div class="tri">🏗️</div><h4>INFRASTRUCTURE</h4><p>Servers, networks, game servers, voice comms — the foundation everything runs on.</p></div>
+    <div class="tech-role fade-in"><div class="tri">💻</div><h4>DEVELOPMENT</h4><p>Web, tools, bots, and automation — custom-built solutions for every team need.</p></div>
+    <div class="tech-role fade-in"><div class="tri">🛡️</div><h4>SECURITY</h4><p>Account protection, anti-cheat coordination, DDoS mitigation — keeping the Korp safe.</p></div>
+    <div class="tech-role fade-in"><div class="tri">📊</div><h4>DATA & ANALYTICS</h4><p>Match stats, performance tracking, scouting tools — turning data into wins.</p></div>
+    <div class="tech-role fade-in"><div class="tri">🎬</div><h4>STREAMING & MEDIA</h4><p>OBS setups, stream overlays, VOD processing — broadcast-quality production.</p></div>
+    <div class="tech-role fade-in"><div class="tri">🔧</div><h4>IT ADMIN</h4><p>Accounts, permissions, platforms, troubleshooting — the glue that holds it all together.</p></div>
+    </div>
+
+    <div class="tsec"><h2>THE TEAM</h2>${t.length?`<div class="tg2">${t.map(m=>`<div class="tc2 fade-in"><div class="tc2-img">${m.image?`<img src="${m.image}">`:'<div class="ph">👤</div>'}${m.specialty?`<div class="tc2-badge">${m.specialty}</div>`:''}</div><div class="tc2-info"><h4>${m.name}</h4>${m.specialty?`<div class="tc2-spec">${m.specialty}</div>`:''}${m.role?`<div class="tc2-role">${m.role}</div>`:''}${m.desc?`<div class="tc2-desc">${m.desc}</div>`:''}${m.stack?`<div class="tc2-stack">${m.stack.split(',').map(s=>`<span class="tc2-tag">${s.trim()}</span>`).join('')}</div>`:''}</div></div>`).join('')}</div>`:'<div style="text-align:center;padding:60px;color:var(--muted)">No team members yet — add them via the admin panel.</div>'}</div>`;
+}
+function techForm(){
+  const nw=!editing.id;const df={name:'',role:'',specialty:'',desc:'',stack:'',image:''};const d=nw?df:(D.techteam||[]).find(m=>m.id===editing.id);if(!d)return '';
+  return `<div class="af" id="ttf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD MEMBER':'EDIT MEMBER'}</h3>
+    <div class="fr"><div class="fg"><label>Name / Handle</label><input id="fttn" value="${esc(d.name)}"></div><div class="fg"><label>Specialty (e.g. Infrastructure, Developer)</label><input id="ftts" value="${esc(d.specialty)}"></div></div>
+    <div class="fr"><div class="fg"><label>Role / Title (e.g. Lead DevOps, IT Admin)</label><input id="fttr" value="${esc(d.role)}"></div><div class="fg"><label>Short Bio</label><input id="fttd" value="${esc(d.desc)}"></div></div>
+    <div class="fg"><label>Tech Stack / Skills (comma-separated)</label><input id="fttk" value="${esc(d.stack||'')}" placeholder="Linux, Docker, Python, Cloudflare..."></div>
+    <div class="fg"><label>Profile Picture</label><div class="iua" id="ttiu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
+    </div><input type="file" id="ttif" accept="image/*" style="display:none"></div>
+    <div class="fa"><button class="ab abs" data-stt="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
 }
 
 // ========== ABOUT US ==========
@@ -915,6 +978,22 @@ function bindAll(){
     editing=null;fs={};await saveToGitHub();render();
   });
   imgBind('spiu','spif');imgBind('saiu','saif');
+
+  // === TECH TEAM CRUD ===
+  document.querySelectorAll('[data-att]').forEach(e=>e.onclick=()=>{editing={t:'techteam',id:null};fs={};render();document.getElementById('ttf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-ett]').forEach(e=>e.onclick=()=>{editing={t:'techteam',id:e.dataset.ett};fs={};render();document.getElementById('ttf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-dtt]').forEach(e=>e.onclick=async()=>{if(confirm('Delete?')){D.techteam=D.techteam.filter(m=>m.id!==e.dataset.dtt);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-stt]').forEach(e=>e.onclick=async()=>{
+    const id=e.dataset.stt,nw=id==='new';
+    if(!D.techteam)D.techteam=[];
+    const obj={id:nw?uid():id,name:v('fttn'),specialty:v('ftts'),role:v('fttr'),desc:v('fttd'),stack:v('fttk'),image:''};
+    const fi=document.getElementById('ttif');
+    if(fi?.files[0])obj.image=await img2b64(fi.files[0]);
+    else{const ex=D.techteam.find(m=>m.id===id);if(ex)obj.image=ex.image}
+    if(nw)D.techteam.push(obj);else{const i=D.techteam.findIndex(m=>m.id===id);if(i>=0)D.techteam[i]=obj}
+    editing=null;fs={};await saveToGitHub();render();
+  });
+  imgBind('ttiu','ttif');
 
   // === BUNDESLIGA CRUD ===
   document.querySelectorAll('[data-sblintro]').forEach(e=>e.onclick=async()=>{
