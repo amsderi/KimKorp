@@ -284,6 +284,31 @@ a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .tc2-desc{font-size:14px;color:var(--muted);line-height:1.5}
 .tc2-stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .tc2-tag{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:2px;background:rgba(232,67,147,.08);border:1px solid rgba(232,67,147,.15);color:var(--accent)}
+/* FSL */
+.fsl-banner{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;padding:40px;margin-bottom:40px;position:relative;display:flex;align-items:center;gap:32px}
+.fsl-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#e84393,#888)}
+.fsl-banner img{width:120px;height:auto;flex-shrink:0;filter:drop-shadow(0 0 16px rgba(232,67,147,.3))}
+.fsl-banner-text h2{font-family:var(--ff-title);font-size:36px;letter-spacing:4px;margin-bottom:4px}
+.fsl-banner-text p{color:var(--muted);font-size:15px;line-height:1.6}
+.fsl-tabs{display:flex;gap:6px;margin-bottom:24px;flex-wrap:wrap}
+.fsl-tab{font-family:var(--ff-body);font-size:13px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;background:var(--card);border:1px solid var(--border);color:var(--muted);padding:10px 24px;cursor:pointer;border-radius:4px;transition:all .3s}
+.fsl-tab:hover,.fsl-tab.act{background:rgba(232,67,147,.1);border-color:var(--accent);color:var(--accent)}
+.fsl-section{display:none}.fsl-section.vis{display:block}
+/* FSL Results */
+.fsl-round{margin-bottom:32px}
+.fsl-round h3{font-family:var(--ff-title);font-size:22px;letter-spacing:3px;color:var(--accent);margin-bottom:12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+.fsl-fix{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:12px}
+.fsl-match{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:16px 20px;display:flex;align-items:center;gap:12px;transition:all .3s}
+.fsl-match:hover{border-color:rgba(232,67,147,.2)}
+.fsl-match .fm-team{display:flex;align-items:center;gap:8px;flex:1;min-width:0}
+.fsl-match .fm-team.fm-r{flex-direction:row-reverse;text-align:right}
+.fsl-match .fm-name{font-weight:600;font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.fsl-match .fm-logo{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:10px;font-weight:700;flex-shrink:0;overflow:hidden}
+.fsl-match .fm-logo img{width:100%;height:100%;object-fit:contain}
+.fsl-match .fm-score{font-family:var(--ff-head);font-size:16px;font-weight:700;letter-spacing:2px;padding:4px 12px;background:rgba(255,255,255,.03);border-radius:3px;flex-shrink:0;text-align:center;min-width:60px}
+.fsl-match .fm-vs{font-size:12px;color:var(--accent);font-weight:700;flex-shrink:0}
+.fsl-match.fm-win .fm-score{color:#00c896}.fsl-match.fm-loss .fm-score{color:#ff4444}.fsl-match.fm-draw .fm-score{color:#ffa500}
+@media(max-width:600px){.fsl-banner{flex-direction:column;text-align:center}.fsl-banner img{width:80px}.fsl-fix{grid-template-columns:1fr}}
 /* Media */
 .med-hero{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;padding:48px;margin-bottom:48px;position:relative;text-align:center}
 .med-hero::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--grad)}
@@ -445,7 +470,7 @@ footer .soc a:hover{color:var(--accent)}
 const ADMIN_PASSWORD = 'KimKorp2026!';
 // =============================================
 
-let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''},rules:[],recruiters:[],warmanagers:[],trophies:[],bundesliga:{intro:'',members:[]},techteam:[],mediateam:[]};
+let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''},rules:[],recruiters:[],warmanagers:[],trophies:[],bundesliga:{intro:'',members:[]},techteam:[],mediateam:[],fsl:{standings:[],results:[],upcoming:[]}};
 let page='news',mdet=null,adm=false,editing=null,fs={},saving=false,ghToken=localStorage.getItem('kk_gh_token')||'',ghRepo=localStorage.getItem('kk_gh_repo')||'',showLogin=false,siteAuth=false;
 
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
@@ -470,7 +495,7 @@ async function loadData(){
   // Ensure all fields exist for backwards compatibility
   D.news=D.news||[];D.matches=D.matches||[];D.admins=D.admins||[];
   D.squads=D.squads||[];D.sponsors=D.sponsors||[];D.founder=D.founder||{};
-  D.rules=D.rules||[];D.recruiters=D.recruiters||[];D.warmanagers=D.warmanagers||[];D.trophies=D.trophies||[];D.bundesliga=D.bundesliga||{};D.bundesliga.intro=D.bundesliga.intro||'';D.bundesliga.members=D.bundesliga.members||[];D.bundesliga.standings=D.bundesliga.standings||[];D.techteam=D.techteam||[];D.mediateam=D.mediateam||[];
+  D.rules=D.rules||[];D.recruiters=D.recruiters||[];D.warmanagers=D.warmanagers||[];D.trophies=D.trophies||[];D.bundesliga=D.bundesliga||{};D.bundesliga.intro=D.bundesliga.intro||'';D.bundesliga.members=D.bundesliga.members||[];D.bundesliga.standings=D.bundesliga.standings||[];D.techteam=D.techteam||[];D.mediateam=D.mediateam||[];D.fsl=D.fsl||{};D.fsl.standings=D.fsl.standings||[];D.fsl.results=D.fsl.results||[];D.fsl.upcoming=D.fsl.upcoming||[];
 }
 
 // ========== GITHUB SAVE ==========
@@ -530,11 +555,11 @@ function bindGate(){
 }
 
 function renderHeader(){
-  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'bundesliga',l:'Bundesliga'},{id:'contact',l:'Team'},{id:'tech',l:'Tech'},{id:'media',l:'Media'},{id:'aboutus',l:'About'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
+  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'bundesliga',l:'Bundesliga'},{id:'fsl',l:'FSL'},{id:'contact',l:'Team'},{id:'tech',l:'Tech'},{id:'media',l:'Media'},{id:'aboutus',l:'About'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
   return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:var(--ff-body);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
 }
 function renderHero(){return `<section class="hero"><div class="hero-bg"></div><div class="hero-lines"></div><div class="dia"></div><div class="dia"></div><div class="dia"></div><div class="hero-content">${LOGO_SVG('hero')}<h1>KIM KORP</h1><div class="sub">FEMALE ESPORTS COLLECTIVE</div><div class="tag">Queens of the Server — Fear the Korp</div></div></section>`}
-function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,bundesliga:renderBundesliga,contact:renderContact,tech:renderTech,media:renderMedia,aboutus:renderAbout,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
+function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,bundesliga:renderBundesliga,fsl:renderFSL,contact:renderContact,tech:renderTech,media:renderMedia,aboutus:renderAbout,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
 
 function renderLoginModal(){
   return `<div class="modal-bg" data-closem><div class="modal" onclick="event.stopPropagation()">
@@ -809,6 +834,68 @@ function mediaForm(){
     <div class="fa"><button class="ab abs" data-smt="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
 }
 
+// ========== FSL ==========
+function renderFSL(){
+  const f=D.fsl||{};const st=f.standings||[];const res=f.results||[];const up=f.upcoming||[];
+  let ap='';
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">FSL League</div>
+    <div style="margin-bottom:16px"><strong style="color:var(--accent);font-size:13px;letter-spacing:2px">STANDINGS</strong><div class="ail" style="margin-top:8px">${st.map((s,i)=>`<div class="air"><span class="im">#${i+1}</span><span class="it">${s.team}${s.isUs?' ⭐':''}</span><span class="im">${s.w||0}W ${s.d||0}D ${s.l||0}L · ${s.pts||0}pts${s.logo?' · 🖼️':''}</span><div class="abr"><button class="ab abe" data-efst="${i}">Edit</button><button class="ab abd" data-dfst="${i}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-afst>+ Add Team</button>${editing&&editing.t==='fslstand'?fslStandForm():''}</div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px"><strong style="color:var(--accent);font-size:13px;letter-spacing:2px">PAST RESULTS</strong><div class="ail" style="margin-top:8px">${res.map((r,i)=>`<div class="air"><span class="it">${r.round}: ${r.home} vs ${r.away}</span><span class="im">${r.score||''}</span><div class="abr"><button class="ab abe" data-efsr="${i}">Edit</button><button class="ab abd" data-dfsr="${i}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-afsr>+ Add Result</button>${editing&&editing.t==='fslresult'?fslResultForm():''}</div>
+    <div style="border-top:1px solid var(--border);padding-top:16px;margin-top:16px"><strong style="color:var(--accent);font-size:13px;letter-spacing:2px">UPCOMING</strong><div class="ail" style="margin-top:8px">${up.map((u,i)=>`<div class="air"><span class="it">${u.round}: ${u.home} vs ${u.away}</span><span class="im">${u.date||''}</span><div class="abr"><button class="ab abe" data-efsu="${i}">Edit</button><button class="ab abd" data-dfsu="${i}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-afsu>+ Add Fixture</button>${editing&&editing.t==='fslupcoming'?fslUpcomingForm():''}</div>
+  </div>`}
+
+  const fslLogo=(s)=>s.isUs?'<img src="logo.png">':s.logo?`<img src="${s.logo}">`:(s.team||'').substring(0,2).toUpperCase();
+  const fslBg=(s)=>s.isUs?'background:transparent':s.logo?'background:transparent':'background:'+(s.color||'#333')+';color:#fff';
+  const findTeam=(name)=>st.find(s=>s.team===name)||{};
+
+  // Group results by round
+  const rounds={};res.forEach(r=>{if(!rounds[r.round])rounds[r.round]=[];rounds[r.round].push(r)});
+  const roundKeys=Object.keys(rounds).sort((a,b)=>{const na=parseInt(a.replace(/\D/g,''))||0,nb=parseInt(b.replace(/\D/g,''))||0;return nb-na});
+  // Group upcoming by round
+  const urounds={};up.forEach(u=>{if(!urounds[u.round])urounds[u.round]=[];urounds[u.round].push(u)});
+  const uroundKeys=Object.keys(urounds).sort((a,b)=>{const na=parseInt(a.replace(/\D/g,''))||0,nb=parseInt(b.replace(/\D/g,''))||0;return na-nb});
+
+  return `<div class="pt" style="margin-top:90px">FEMALE ESPORTS LEAGUE</div><div class="ps">FSL — 20 Team Competitive League</div>${ap}
+    <div class="fsl-banner fade-in"><img src="fsl-logo.png" alt="FSL"><div class="fsl-banner-text"><h2>FSL — FEMALE ESPORTS LEAGUE</h2><p>The premier competitive league for female esports teams. 20 teams battle across the season for glory, rankings, and the championship title.</p></div></div>
+    <div class="fsl-tabs"><button class="fsl-tab act" data-fsltab="table">League Table</button><button class="fsl-tab" data-fsltab="results">Past Results</button><button class="fsl-tab" data-fsltab="upcoming">Upcoming</button></div>
+
+    <div class="fsl-section vis" id="fsl-table">${st.length?`<div style="overflow-x:auto"><table class="blt"><thead><tr><th class="num">#</th><th>Team</th><th class="num">P</th><th class="num">W</th><th class="num">D</th><th class="num">L</th><th class="num">+/-</th><th class="num">PTS</th></tr></thead><tbody>${st.map((s,i)=>`<tr class="${s.isUs?'blt-us':''} fade-in"><td>${i+1}</td><td><div class="tn-cell"><span class="tn-logo" style="${fslBg(s)}">${fslLogo(s)}</span>${s.team}</div></td><td class="num">${(s.w||0)+(s.d||0)+(s.l||0)}</td><td class="num">${s.w||0}</td><td class="num">${s.d||0}</td><td class="num">${s.l||0}</td><td class="num">${s.gd||'0'}</td><td class="num" style="font-weight:900;${s.isUs?'color:var(--accent)':''}">${s.pts||0}</td></tr>`).join('')}</tbody></table></div>`:'<div style="text-align:center;padding:60px;color:var(--muted)">No standings yet.</div>'}</div>
+
+    <div class="fsl-section" id="fsl-results">${roundKeys.length?roundKeys.map(rk=>`<div class="fsl-round fade-in"><h3>${rk}</h3><div class="fsl-fix">${rounds[rk].map(r=>{const ht=findTeam(r.home),at=findTeam(r.away);const sc=(r.score||'').split(/\s*[-:]\s*/);const hs=parseInt(sc[0])||0,as=parseInt(sc[1])||0;const cls=hs>as?'fm-win':hs<as?'fm-loss':hs===as&&r.score?'fm-draw':'';return `<div class="fsl-match ${cls}"><div class="fm-team"><span class="fm-logo" style="${ht.isUs?'background:transparent':ht.logo?'background:transparent':'background:'+(ht.color||'#333')+';color:#fff'}">${ht.isUs?'<img src="logo.png">':ht.logo?`<img src="${ht.logo}">`:(r.home||'').substring(0,2).toUpperCase()}</span><span class="fm-name">${r.home}</span></div><div class="fm-score">${r.score||'?'}</div><div class="fm-team fm-r"><span class="fm-logo" style="${at.isUs?'background:transparent':at.logo?'background:transparent':'background:'+(at.color||'#555')+';color:#fff'}">${at.isUs?'<img src="logo.png">':at.logo?`<img src="${at.logo}">`:(r.away||'').substring(0,2).toUpperCase()}</span><span class="fm-name">${r.away}</span></div></div>`}).join('')}</div></div>`).join(''):'<div style="text-align:center;padding:60px;color:var(--muted)">No results yet.</div>'}</div>
+
+    <div class="fsl-section" id="fsl-upcoming">${uroundKeys.length?uroundKeys.map(rk=>`<div class="fsl-round fade-in"><h3>${rk}</h3><div class="fsl-fix">${urounds[rk].map(u=>{const ht=findTeam(u.home),at=findTeam(u.away);return `<div class="fsl-match"><div class="fm-team"><span class="fm-logo" style="${ht.isUs?'background:transparent':ht.logo?'background:transparent':'background:'+(ht.color||'#333')+';color:#fff'}">${ht.isUs?'<img src="logo.png">':ht.logo?`<img src="${ht.logo}">`:(u.home||'').substring(0,2).toUpperCase()}</span><span class="fm-name">${u.home}</span></div><div class="fm-vs">VS</div><div class="fm-team fm-r"><span class="fm-logo" style="${at.isUs?'background:transparent':at.logo?'background:transparent':'background:'+(at.color||'#555')+';color:#fff'}">${at.isUs?'<img src="logo.png">':at.logo?`<img src="${at.logo}">`:(u.away||'').substring(0,2).toUpperCase()}</span><span class="fm-name">${u.away}</span></div></div>`}).join('')}</div></div>`).join(''):'<div style="text-align:center;padding:60px;color:var(--muted)">No upcoming fixtures.</div>'}</div>`;
+}
+function fslStandForm(){
+  const nw=editing.idx===undefined||editing.idx===null;
+  const df={team:'',w:0,d:0,l:0,gd:'0',pts:0,color:'#888888',isUs:false,logo:''};
+  const st=D.fsl.standings||[];const d=nw?df:st[editing.idx];if(!d)return '';
+  return `<div class="af" id="fstf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD TEAM':'EDIT TEAM'}</h3>
+    <div class="fr"><div class="fg"><label>Team Name</label><input id="xfst" value="${esc(d.team)}"></div><div class="fg"><label>Color</label><input type="color" id="xfsc" value="${d.color||'#888888'}" style="height:42px"></div></div>
+    <div class="fr3"><div class="fg"><label>Wins</label><input type="number" id="xfsw" value="${d.w||0}"></div><div class="fg"><label>Draws</label><input type="number" id="xfsd" value="${d.d||0}"></div><div class="fg"><label>Losses</label><input type="number" id="xfsl" value="${d.l||0}"></div></div>
+    <div class="fr3"><div class="fg"><label>Goal Diff</label><input id="xfsg" value="${esc(d.gd||'0')}"></div><div class="fg"><label>Points</label><input type="number" id="xfsp" value="${d.pts||0}"></div><div class="fg"><label>Our team?</label><select id="xfsu"><option value="0" ${!d.isUs?'selected':''}>No</option><option value="1" ${d.isUs?'selected':''}>Yes ⭐</option></select></div></div>
+    <div class="fg"><label>Team Logo</label><div class="iua" id="fsiu">Click to upload${d.logo?`<br><img src="${d.logo}">`:''}
+    </div><input type="file" id="fsif" accept="image/*" style="display:none"></div>
+    <div class="fa"><button class="ab abs" data-sfst="${nw?'new':editing.idx}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+function fslResultForm(){
+  const nw=editing.idx===undefined||editing.idx===null;
+  const df={round:'',home:'',away:'',score:''};
+  const r=nw?df:(D.fsl.results||[])[editing.idx];if(!r)return '';
+  return `<div class="af" id="fsrf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD RESULT':'EDIT RESULT'}</h3>
+    <div class="fr"><div class="fg"><label>Round (e.g. Round 5)</label><input id="xfrr" value="${esc(r.round)}"></div><div class="fg"><label>Score (e.g. 3:1)</label><input id="xfrs" value="${esc(r.score)}"></div></div>
+    <div class="fr"><div class="fg"><label>Home Team</label><input id="xfrh" value="${esc(r.home)}"></div><div class="fg"><label>Away Team</label><input id="xfra" value="${esc(r.away)}"></div></div>
+    <div class="fa"><button class="ab abs" data-sfsr="${nw?'new':editing.idx}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+function fslUpcomingForm(){
+  const nw=editing.idx===undefined||editing.idx===null;
+  const df={round:'',home:'',away:'',date:''};
+  const u=nw?df:(D.fsl.upcoming||[])[editing.idx];if(!u)return '';
+  return `<div class="af" id="fsuf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD FIXTURE':'EDIT FIXTURE'}</h3>
+    <div class="fr"><div class="fg"><label>Round (e.g. Round 6)</label><input id="xfur" value="${esc(u.round)}"></div><div class="fg"><label>Date</label><input id="xfud" value="${esc(u.date)}"></div></div>
+    <div class="fr"><div class="fg"><label>Home Team</label><input id="xfuh" value="${esc(u.home)}"></div><div class="fg"><label>Away Team</label><input id="xfua" value="${esc(u.away)}"></div></div>
+    <div class="fa"><button class="ab abs" data-sfsu="${nw?'new':editing.idx}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
+}
+
 // ========== ABOUT US ==========
 function renderAbout(){
   return `<div class="pt" style="margin-top:90px">ABOUT US</div><div class="ps">The story behind Kim Korp</div>
@@ -1040,6 +1127,50 @@ function bindAll(){
     editing=null;fs={};await saveToGitHub();render();
   });
   imgBind('spiu','spif');imgBind('saiu','saif');
+
+  // === FSL TAB SWITCHING ===
+  document.querySelectorAll('[data-fsltab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.fsl-tab').forEach(x=>x.classList.remove('act'));b.classList.add('act');document.querySelectorAll('.fsl-section').forEach(s=>s.classList.remove('vis'));const t=document.getElementById('fsl-'+b.dataset.fsltab);if(t)t.classList.add('vis')});
+
+  // === FSL STANDINGS CRUD ===
+  document.querySelectorAll('[data-afst]').forEach(e=>e.onclick=()=>{editing={t:'fslstand',idx:null};fs={};render();document.getElementById('fstf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-efst]').forEach(e=>e.onclick=()=>{editing={t:'fslstand',idx:parseInt(e.dataset.efst)};fs={};render();document.getElementById('fstf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-dfst]').forEach(e=>e.onclick=async()=>{if(confirm('Remove?')){D.fsl.standings.splice(parseInt(e.dataset.dfst),1);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-sfst]').forEach(e=>e.onclick=async()=>{
+    const idx=e.dataset.sfst,nw=idx==='new';
+    if(!D.fsl.standings)D.fsl.standings=[];
+    const obj={team:v('xfst'),color:v('xfsc'),w:parseInt(v('xfsw'))||0,d:parseInt(v('xfsd'))||0,l:parseInt(v('xfsl'))||0,gd:v('xfsg'),pts:parseInt(v('xfsp'))||0,isUs:document.getElementById('xfsu').value==='1',logo:''};
+    const fi=document.getElementById('fsif');
+    if(fi?.files[0])obj.logo=await img2b64(fi.files[0]);
+    else if(!nw){const ex=D.fsl.standings[parseInt(idx)];if(ex)obj.logo=ex.logo||''}
+    if(nw)D.fsl.standings.push(obj);else D.fsl.standings[parseInt(idx)]=obj;
+    D.fsl.standings.sort((a,b)=>(b.pts||0)-(a.pts||0));
+    editing=null;fs={};await saveToGitHub();render();
+  });
+  imgBind('fsiu','fsif');
+
+  // === FSL RESULTS CRUD ===
+  document.querySelectorAll('[data-afsr]').forEach(e=>e.onclick=()=>{editing={t:'fslresult',idx:null};fs={};render();document.getElementById('fsrf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-efsr]').forEach(e=>e.onclick=()=>{editing={t:'fslresult',idx:parseInt(e.dataset.efsr)};fs={};render();document.getElementById('fsrf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-dfsr]').forEach(e=>e.onclick=async()=>{if(confirm('Delete?')){D.fsl.results.splice(parseInt(e.dataset.dfsr),1);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-sfsr]').forEach(e=>e.onclick=async()=>{
+    const idx=e.dataset.sfsr,nw=idx==='new';
+    if(!D.fsl.results)D.fsl.results=[];
+    const obj={round:v('xfrr'),home:v('xfrh'),away:v('xfra'),score:v('xfrs')};
+    if(nw)D.fsl.results.push(obj);else D.fsl.results[parseInt(idx)]=obj;
+    editing=null;fs={};await saveToGitHub();render();
+  });
+
+  // === FSL UPCOMING CRUD ===
+  document.querySelectorAll('[data-afsu]').forEach(e=>e.onclick=()=>{editing={t:'fslupcoming',idx:null};fs={};render();document.getElementById('fsuf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-efsu]').forEach(e=>e.onclick=()=>{editing={t:'fslupcoming',idx:parseInt(e.dataset.efsu)};fs={};render();document.getElementById('fsuf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-dfsu]').forEach(e=>e.onclick=async()=>{if(confirm('Delete?')){D.fsl.upcoming.splice(parseInt(e.dataset.dfsu),1);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-sfsu]').forEach(e=>e.onclick=async()=>{
+    const idx=e.dataset.sfsu,nw=idx==='new';
+    if(!D.fsl.upcoming)D.fsl.upcoming=[];
+    const obj={round:v('xfur'),home:v('xfuh'),away:v('xfua'),date:v('xfud')};
+    if(nw)D.fsl.upcoming.push(obj);else D.fsl.upcoming[parseInt(idx)]=obj;
+    editing=null;fs={};await saveToGitHub();render();
+  });
 
   // === MEDIA TEAM CRUD ===
   document.querySelectorAll('[data-amt]').forEach(e=>e.onclick=()=>{editing={t:'mediateam',id:null};fs={};render();document.getElementById('mtf')?.scrollIntoView({behavior:'smooth'})});
