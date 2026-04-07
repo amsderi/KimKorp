@@ -285,6 +285,50 @@ a.nc:hover .nb::after,a.fc:hover .fco::after{opacity:1}
 .tc2-desc{font-size:14px;color:var(--muted);line-height:1.5}
 .tc2-stack{display:flex;flex-wrap:wrap;gap:6px;margin-top:12px}
 .tc2-tag{font-size:11px;font-weight:700;letter-spacing:1px;padding:4px 10px;border-radius:2px;background:rgba(232,67,147,.08);border:1px solid rgba(232,67,147,.15);color:var(--accent)}
+/* Medical */
+.med-hero2{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;padding:48px;margin-bottom:40px;position:relative;text-align:center}
+.med-hero2::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#00c896,#e84393)}
+.med-hero2::after{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 60% 80% at 50% 30%,rgba(0,200,150,.05),transparent);pointer-events:none}
+.med-hero2 h2{font-family:var(--ff-title);font-size:36px;letter-spacing:5px;margin-bottom:8px;position:relative}
+.med-hero2 p{color:var(--muted);font-size:16px;line-height:1.7;max-width:750px;margin:0 auto;position:relative}
+.med-icons2{display:flex;justify-content:center;gap:24px;margin-bottom:24px;position:relative}
+.med-icons2 span{font-size:32px;opacity:.6}
+.ha-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px;margin-bottom:48px}
+.ha-card{background:var(--card);border:1px solid var(--border);border-radius:4px;padding:28px;position:relative;overflow:hidden;transition:all .3s}
+.ha-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px;background:linear-gradient(180deg,#00c896,#e84393)}
+.ha-card:hover{border-color:rgba(0,200,150,.2)}
+.ha-card .hai{font-size:28px;margin-bottom:10px}
+.ha-card h4{font-family:var(--ff-title);font-size:20px;letter-spacing:2px;margin-bottom:6px;color:#00c896}
+.ha-card p{color:var(--muted);font-size:14px;line-height:1.6}
+.mdg{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:28px}
+.mdc{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;transition:all .4s;position:relative}
+.mdc::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#00c896,#e84393);opacity:0;transition:opacity .3s}
+.mdc:hover::before{opacity:1}
+.mdc:hover{border-color:rgba(0,200,150,.3);transform:translateY(-4px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
+.mdc-img{width:100%;height:360px;background:linear-gradient(135deg,#0a1810,#122028);position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center}
+.mdc-img img{width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0}
+.mdc-img .ph{font-size:72px;opacity:.15}
+.mdc-badge{position:absolute;top:12px;right:12px;background:rgba(10,8,16,.85);backdrop-filter:blur(8px);border:1px solid rgba(0,200,150,.2);border-radius:3px;padding:5px 12px;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;color:#00c896}
+.mdc-info{padding:20px}
+.mdc-info h4{font-family:var(--ff-title);font-size:24px;letter-spacing:2px;margin-bottom:4px}
+.mdc-spec{font-size:13px;color:#00c896;font-weight:700;letter-spacing:2px;text-transform:uppercase;margin-bottom:4px}
+.mdc-role{font-size:12px;color:var(--accent2);font-weight:600;letter-spacing:1px;margin-bottom:10px}
+.mdc-desc{font-size:14px;color:var(--muted);line-height:1.5}
+/* CMO card */
+.cmo{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;display:grid;grid-template-columns:340px 1fr;margin-bottom:40px;position:relative;transition:all .4s}
+.cmo::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#00c896,#e84393)}
+.cmo:hover{border-color:rgba(0,200,150,.3)}
+.cmo-img{height:100%;min-height:480px;background:linear-gradient(135deg,#0a1810,#122028);position:relative;overflow:hidden}
+.cmo-img img{width:100%;height:100%;object-fit:cover;object-position:top;position:absolute;inset:0}
+.cmo-img .ph{font-size:100px;opacity:.15;display:flex;align-items:center;justify-content:center;height:100%}
+.cmo-body{padding:40px 48px;display:flex;flex-direction:column;justify-content:center}
+.cmo-body h3{font-family:var(--ff-title);font-size:36px;letter-spacing:4px;margin-bottom:4px;line-height:1.1}
+.cmo-title{font-size:15px;color:#00c896;font-weight:700;letter-spacing:3px;text-transform:uppercase;margin-bottom:6px}
+.cmo-spec{font-size:13px;color:var(--accent);font-weight:600;letter-spacing:2px;text-transform:uppercase;margin-bottom:20px}
+.cmo-bio{color:var(--muted);font-size:16px;line-height:1.7;margin-bottom:16px}
+.cmo-quote{font-size:18px;font-style:italic;color:var(--text);border-left:3px solid #00c896;padding-left:20px;margin:16px 0;line-height:1.5}
+.cmo-contact{font-size:14px;color:#00c896;margin-top:8px}
+@media(max-width:900px){.cmo{grid-template-columns:1fr}.cmo-img{min-height:400px}.cmo-body{padding:28px}}
 /* FSL */
 .fsl-banner{background:var(--card);border:1px solid var(--border);border-radius:4px;overflow:hidden;padding:40px;margin-bottom:40px;position:relative;display:flex;align-items:center;gap:32px}
 .fsl-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(135deg,#e84393,#888)}
@@ -471,7 +515,7 @@ footer .soc a:hover{color:var(--accent)}
 const ADMIN_PASSWORD = 'KimKorp2026!';
 // =============================================
 
-let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''},rules:[],recruiters:[],warmanagers:[],trophies:[],bundesliga:{intro:'',members:[]},techteam:[],mediateam:[],fsl:{standings:[],results:[],upcoming:[]}};
+let D={news:[],matches:[],admins:[],squads:[],sponsors:[],founder:{name:'',title:'',bio:'',contact:'',image:'',quote:''},rules:[],recruiters:[],warmanagers:[],trophies:[],bundesliga:{intro:'',members:[]},techteam:[],mediateam:[],medicalteam:[],cmo:{},fsl:{standings:[],results:[],upcoming:[]}};
 let page='news',mdet=null,adm=false,editing=null,fs={},saving=false,ghToken=localStorage.getItem('kk_gh_token')||'',ghRepo=localStorage.getItem('kk_gh_repo')||'',showLogin=false,siteAuth=false;
 
 function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2,6)}
@@ -496,7 +540,7 @@ async function loadData(){
   // Ensure all fields exist for backwards compatibility
   D.news=D.news||[];D.matches=D.matches||[];D.admins=D.admins||[];
   D.squads=D.squads||[];D.sponsors=D.sponsors||[];D.founder=D.founder||{};
-  D.rules=D.rules||[];D.recruiters=D.recruiters||[];D.warmanagers=D.warmanagers||[];D.trophies=D.trophies||[];D.bundesliga=D.bundesliga||{};D.bundesliga.intro=D.bundesliga.intro||'';D.bundesliga.members=D.bundesliga.members||[];D.bundesliga.standings=D.bundesliga.standings||[];D.techteam=D.techteam||[];D.mediateam=D.mediateam||[];D.fsl=D.fsl||{};D.fsl.standings=D.fsl.standings||[];D.fsl.results=D.fsl.results||[];D.fsl.upcoming=D.fsl.upcoming||[];
+  D.rules=D.rules||[];D.recruiters=D.recruiters||[];D.warmanagers=D.warmanagers||[];D.trophies=D.trophies||[];D.bundesliga=D.bundesliga||{};D.bundesliga.intro=D.bundesliga.intro||'';D.bundesliga.members=D.bundesliga.members||[];D.bundesliga.standings=D.bundesliga.standings||[];D.techteam=D.techteam||[];D.mediateam=D.mediateam||[];D.medicalteam=D.medicalteam||[];D.cmo=D.cmo||{};D.fsl=D.fsl||{};D.fsl.standings=D.fsl.standings||[];D.fsl.results=D.fsl.results||[];D.fsl.upcoming=D.fsl.upcoming||[];
 }
 
 // ========== GITHUB SAVE ==========
@@ -556,11 +600,11 @@ function bindGate(){
 }
 
 function renderHeader(){
-  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'bundesliga',l:'Bundesliga'},{id:'fsl',l:'FSL'},{id:'contact',l:'Team'},{id:'tech',l:'Tech'},{id:'media',l:'Media'},{id:'aboutus',l:'About'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
+  const ps=[{id:'news',l:'News'},{id:'wars',l:'Wars'},{id:'trophies',l:'Trophies'},{id:'bundesliga',l:'Bundesliga'},{id:'fsl',l:'FSL'},{id:'contact',l:'Team'},{id:'tech',l:'Tech'},{id:'media',l:'Media'},{id:'medical',l:'Medical'},{id:'aboutus',l:'About'},{id:'rules',l:'Rules'},{id:'sponsors',l:'Partners'},{id:'recruit',l:'Recruit'},{id:'challenge',l:'Challenge'},{id:'support',l:'Support'}];
   return `<header><div class="hi"><div style="display:flex;align-items:center"><div class="logo" data-nav="news">KIM KORP</div>${LOGO_SVG('lg')}</div><nav>${ps.map(p=>`<button class="${page===p.id?'active':''}" data-nav="${p.id}">${p.l}</button>`).join('')}<a href="http://unicornmaster.bplaced.net/" target="_blank" rel="noopener" style="font-family:var(--ff-body);font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:var(--muted);padding:8px 10px;text-decoration:none;transition:color .3s" onmouseover="this.style.color='var(--accent)'" onmouseout="this.style.color='var(--muted)'">Forum</a><button class="atgl ${adm?'on':''}" data-adm>${adm?'🔓 ADMIN ON':'🔒 ADMIN'}</button></nav></div></header>`;
 }
 function renderHero(){return `<section class="hero"><div class="hero-bg"></div><div class="hero-lines"></div><div class="dia"></div><div class="dia"></div><div class="dia"></div><div class="hero-content">${LOGO_SVG('hero')}<h1>KIM KORP</h1><div class="sub">FEMALE ESPORTS COLLECTIVE</div><div class="tag">Queens of the Server — Fear the Korp</div></div></section>`}
-function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,bundesliga:renderBundesliga,fsl:renderFSL,contact:renderContact,tech:renderTech,media:renderMedia,aboutus:renderAbout,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
+function renderPage(){if(mdet)return renderMD();return({news:renderNews,wars:renderWars,trophies:renderTrophies,bundesliga:renderBundesliga,fsl:renderFSL,contact:renderContact,tech:renderTech,media:renderMedia,medical:renderMedical,aboutus:renderAbout,rules:renderRules,sponsors:renderSponsors,recruit:renderRecruit,challenge:renderChallenge,support:renderSupport}[page]||renderNews)()}
 
 function renderLoginModal(){
   return `<div class="modal-bg" data-closem><div class="modal" onclick="event.stopPropagation()">
@@ -897,6 +941,54 @@ function fslUpcomingForm(){
     <div class="fa"><button class="ab abs" data-sfsu="${nw?'new':editing.idx}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
 }
 
+// ========== MEDICAL ==========
+function renderMedical(){
+  const t=D.medicalteam||[];
+  const c=D.cmo||{};
+  let ap='';
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Chief Medical Officer</div><div class="ail"><div class="air"><span class="it">${c.name||'(nicht gesetzt)'}</span><span class="im">${c.specialty||''}</span><div class="abr"><button class="ab abe" data-ecmo>Bearbeiten</button></div></div></div>${editing&&editing.t==='cmo'?cmoForm():''}</div>
+    <div class="ap" style="margin-top:20px"><div class="apt">Medical Team</div><div class="ail">${t.map(m=>`<div class="air"><span class="it">${m.name}</span><span class="im">${m.specialty||''} · ${m.role||''}</span><div class="abr"><button class="ab abe" data-emdt="${m.id}">Edit</button><button class="ab abd" data-dmdt="${m.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-amdt>+ Add Member</button>${editing&&editing.t==='medical'?medicalForm():''}</div>`}
+
+  const cmoHtml=c.name?`<div class="tsec"><h2>CHIEF MEDICAL OFFICER</h2><div class="cmo fade-in"><div class="cmo-img">${c.image?`<img src="${c.image}">`:'<div class="ph">👤</div>'}</div><div class="cmo-body"><h3>${c.name}</h3><div class="cmo-title">Chief Medical Officer</div>${c.specialty?`<div class="cmo-spec">${c.specialty}</div>`:''}${c.bio?`<div class="cmo-bio">${c.bio}</div>`:''}${c.quote?`<div class="cmo-quote">"${c.quote}"</div>`:''}${c.contact?`<div class="cmo-contact">✉ ${c.contact}</div>`:''}</div></div></div>`:'';
+
+  return `<div class="pt" style="margin-top:90px">MEDICAL & HEALTH</div><div class="ps">Gesundheit & Wohlbefinden im Esport</div>${ap}
+
+    <div class="med-hero2 fade-in"><div class="med-icons2"><span>🏥</span><span>🧠</span><span>💪</span><span>❤️</span><span>👁️</span></div><h2>HEALTH AWARENESS IM ESPORT</h2><p>Esport verlangt nicht nur mentale Stärke, sondern auch körperliche Gesundheit. Stundenlanges Sitzen, Bildschirmarbeit und hoher Leistungsdruck können Spuren hinterlassen. Bei Kim Korp nehmen wir die Gesundheit unserer Spielerinnen genauso ernst wie ihre Performance — denn nur ein gesunder Körper und ein klarer Geist gewinnen langfristig.</p></div>
+
+    <div class="ha-grid">
+    <div class="ha-card fade-in"><div class="hai">🧠</div><h4>MENTALE GESUNDHEIT</h4><p>Leistungsdruck, Turniernerven und toxische Umgebungen können die psychische Gesundheit belasten. Unser Team bietet Ansprechpartner für Stressbewältigung, Burnout-Prävention und mentales Coaching.</p></div>
+    <div class="ha-card fade-in"><div class="hai">🦴</div><h4>ERGONOMIE & HALTUNG</h4><p>Rückenprobleme, Nackenschmerzen und Sehnenscheidenentzündungen sind im Esport weit verbreitet. Wir beraten zu ergonomischen Setups, korrekter Sitzhaltung und regelmäßigen Pausen.</p></div>
+    <div class="ha-card fade-in"><div class="hai">👁️</div><h4>AUGENGESUNDHEIT</h4><p>Stundenlanges Starren auf Bildschirme belastet die Augen. Blaulichtfilter, die 20-20-20-Regel und regelmäßige Augenuntersuchungen sind Teil unserer Empfehlungen.</p></div>
+    <div class="ha-card fade-in"><div class="hai">🏃‍♀️</div><h4>BEWEGUNG & FITNESS</h4><p>Körperliche Aktivität verbessert Reaktionszeit, Konzentration und allgemeines Wohlbefinden. Wir fördern Ausgleichssport, Stretching-Routinen und gesunde Gewohnheiten.</p></div>
+    <div class="ha-card fade-in"><div class="hai">🥗</div><h4>ERNÄHRUNG</h4><p>Energydrinks und Fastfood sind keine Lösung. Ausgewogene Ernährung, ausreichend Wasser und gesunde Snacks steigern die Leistung nachweislich.</p></div>
+    <div class="ha-card fade-in"><div class="hai">😴</div><h4>SCHLAF & ERHOLUNG</h4><p>Regelmäßiger und ausreichender Schlaf ist einer der größten Leistungsfaktoren. Wir sensibilisieren für gesunde Schlafgewohnheiten und Erholungsphasen zwischen Scrims.</p></div>
+    </div>
+
+    ${cmoHtml}
+
+    <div class="tsec"><h2>UNSER MEDICAL TEAM</h2><p style="color:var(--muted);margin-bottom:24px">Diese Menschen kümmern sich um das Wohlergehen unserer Spielerinnen — von physischer Fitness über mentale Gesundheit bis hin zu Ernährungsberatung.</p>
+    ${t.length?`<div class="mdg">${t.map(m=>`<div class="mdc fade-in"><div class="mdc-img">${m.image?`<img src="${m.image}">`:'<div class="ph">👤</div>'}${m.specialty?`<div class="mdc-badge">${m.specialty}</div>`:''}</div><div class="mdc-info"><h4>${m.name}</h4>${m.specialty?`<div class="mdc-spec">${m.specialty}</div>`:''}${m.role?`<div class="mdc-role">${m.role}</div>`:''}${m.desc?`<div class="mdc-desc">${m.desc}</div>`:''}</div></div>`).join('')}</div>`:'<div style="text-align:center;padding:60px;color:var(--muted)">Noch keine Mitglieder — über das Admin Panel hinzufügen.</div>'}</div>`;
+}
+function cmoForm(){
+  const d=D.cmo||{name:'',specialty:'',bio:'',contact:'',image:'',quote:''};
+  return `<div class="af" id="cmof"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:#00c896">CHIEF MEDICAL OFFICER BEARBEITEN</h3>
+    <div class="fr"><div class="fg"><label>Name</label><input id="fcmn" value="${esc(d.name)}"></div><div class="fg"><label>Fachgebiet</label><input id="fcms" value="${esc(d.specialty)}"></div></div>
+    <div class="fg"><label>Über / Bio</label><textarea id="fcmb" style="min-height:100px">${esc(d.bio)}</textarea></div>
+    <div class="fr"><div class="fg"><label>Zitat (optional)</label><input id="fcmq" value="${esc(d.quote)}" placeholder="Optionales Zitat..."></div><div class="fg"><label>Kontakt / E-Mail</label><input id="fcmc" value="${esc(d.contact)}"></div></div>
+    <div class="fg"><label>Profilbild</label><div class="iua" id="cmiu">Klicken zum Hochladen${d.image?`<br><img src="${d.image}">`:''}
+    </div><input type="file" id="cmif" accept="image/*" style="display:none"></div>
+    <div class="fa"><button class="ab abs" data-scmo>💾 Speichern</button><button class="ab abc" data-cf>Abbrechen</button></div></div>`;
+}
+function medicalForm(){
+  const nw=!editing.id;const df={name:'',role:'',specialty:'',desc:'',image:''};const d=nw?df:(D.medicalteam||[]).find(m=>m.id===editing.id);if(!d)return '';
+  return `<div class="af" id="mdtf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'MITGLIED HINZUFÜGEN':'MITGLIED BEARBEITEN'}</h3>
+    <div class="fr"><div class="fg"><label>Name</label><input id="fmdn" value="${esc(d.name)}"></div><div class="fg"><label>Fachgebiet (z.B. Psychologie, Physiotherapie)</label><input id="fmds" value="${esc(d.specialty)}"></div></div>
+    <div class="fr"><div class="fg"><label>Rolle / Titel</label><input id="fmdr" value="${esc(d.role)}"></div><div class="fg"><label>Beschreibung</label><input id="fmdd" value="${esc(d.desc)}"></div></div>
+    <div class="fg"><label>Profilbild</label><div class="iua" id="mdiu">Klicken zum Hochladen${d.image?`<br><img src="${d.image}">`:''}
+    </div><input type="file" id="mdif" accept="image/*" style="display:none"></div>
+    <div class="fa"><button class="ab abs" data-smdt="${nw?'new':d.id}">💾 Speichern</button><button class="ab abc" data-cf>Abbrechen</button></div></div>`;
+}
+
 // ========== ABOUT US ==========
 function renderAbout(){
   return `<div class="pt" style="margin-top:90px">ABOUT US</div><div class="ps">The story behind Kim Korp</div>
@@ -1128,6 +1220,33 @@ function bindAll(){
     editing=null;fs={};await saveToGitHub();render();
   });
   imgBind('spiu','spif');imgBind('saiu','saif');
+
+  // === CMO CRUD ===
+  document.querySelectorAll('[data-ecmo]').forEach(e=>e.onclick=()=>{editing={t:'cmo'};fs={};render();document.getElementById('cmof')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-scmo]').forEach(e=>e.onclick=async()=>{
+    const obj={name:v('fcmn'),specialty:v('fcms'),bio:v('fcmb'),contact:v('fcmc'),quote:v('fcmq'),image:''};
+    const fi=document.getElementById('cmif');
+    if(fi?.files[0])obj.image=await img2b64(fi.files[0]);
+    else obj.image=(D.cmo||{}).image||'';
+    D.cmo=obj;editing=null;fs={};await saveToGitHub();render();
+  });
+  imgBind('cmiu','cmif');
+
+  // === MEDICAL TEAM CRUD ===
+  document.querySelectorAll('[data-amdt]').forEach(e=>e.onclick=()=>{editing={t:'medical',id:null};fs={};render();document.getElementById('mdtf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-emdt]').forEach(e=>e.onclick=()=>{editing={t:'medical',id:e.dataset.emdt};fs={};render();document.getElementById('mdtf')?.scrollIntoView({behavior:'smooth'})});
+  document.querySelectorAll('[data-dmdt]').forEach(e=>e.onclick=async()=>{if(confirm('Delete?')){D.medicalteam=D.medicalteam.filter(m=>m.id!==e.dataset.dmdt);await saveToGitHub();render()}});
+  document.querySelectorAll('[data-smdt]').forEach(e=>e.onclick=async()=>{
+    const id=e.dataset.smdt,nw=id==='new';
+    if(!D.medicalteam)D.medicalteam=[];
+    const obj={id:nw?uid():id,name:v('fmdn'),specialty:v('fmds'),role:v('fmdr'),desc:v('fmdd'),image:''};
+    const fi=document.getElementById('mdif');
+    if(fi?.files[0])obj.image=await img2b64(fi.files[0]);
+    else{const ex=D.medicalteam.find(m=>m.id===id);if(ex)obj.image=ex.image}
+    if(nw)D.medicalteam.push(obj);else{const i=D.medicalteam.findIndex(m=>m.id===id);if(i>=0)D.medicalteam[i]=obj}
+    editing=null;fs={};await saveToGitHub();render();
+  });
+  imgBind('mdiu','mdif');
 
   // === FSL TAB SWITCHING ===
   document.querySelectorAll('[data-fsltab]').forEach(b=>b.onclick=()=>{document.querySelectorAll('.fsl-tab').forEach(x=>x.classList.remove('act'));b.classList.add('act');document.querySelectorAll('.fsl-section').forEach(s=>s.classList.remove('vis'));const t=document.getElementById('fsl-'+b.dataset.fsltab);if(t)t.classList.add('vis')});
