@@ -522,7 +522,7 @@ function uid(){return Date.now().toString(36)+Math.random().toString(36).slice(2
 function esc(s){return(s||'').replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/</g,'&lt;')}
 function csv(s){return(s||'').split(',').map(x=>x.trim()).filter(Boolean)}
 function toast(m,ok=true){const e=document.createElement('div');e.className='toast '+(ok?'toast-ok':'toast-err');e.textContent=m;document.body.appendChild(e);setTimeout(()=>e.remove(),3000)}
-function img2b64(file,maxW=600,maxH=800,quality=0.7){return new Promise(r=>{const img=new Image();img.onload=()=>{let w=img.width,h=img.height;if(w>maxW){h=Math.round(h*(maxW/w));w=maxW}if(h>maxH){w=Math.round(w*(maxH/h));h=maxH}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);r(c.toDataURL('image/jpeg',quality))};img.src=URL.createObjectURL(file)})}
+function img2b64(file,maxW=500,maxH=700,quality=0.6){return new Promise(r=>{const img=new Image();img.onload=()=>{let w=img.width,h=img.height;if(w>maxW){h=Math.round(h*(maxW/w));w=maxW}if(h>maxH){w=Math.round(w*(maxH/h));h=maxH}const c=document.createElement('canvas');c.width=w;c.height=h;c.getContext('2d').drawImage(img,0,0,w,h);r(c.toDataURL('image/jpeg',quality))};img.src=URL.createObjectURL(file)})}
 function tc(t){return'ntg-'+t}
 function trc(t){return t==='Diamond'?'td':t==='Gold'?'tg':'ts2'}
 
@@ -548,15 +548,24 @@ async function saveToGitHub(){
   if(!ghToken||!ghRepo){toast('GitHub not configured!',false);return}
   saving=true;render();
   try{
+    // Compact JSON (no pretty print to save space)
+    const jsonStr=JSON.stringify(D);
+    const sizeMB=(jsonStr.length/1024/1024).toFixed(1);
+    if(jsonStr.length>50*1024*1024){toast('Data too large ('+sizeMB+'MB). Remove some images.',false);saving=false;render();return}
+    // Encode to base64 in chunks to avoid call stack issues
+    const utf8=new TextEncoder().encode(jsonStr);
+    let binary='';const chunk=8192;
+    for(let i=0;i<utf8.length;i+=chunk){binary+=String.fromCharCode.apply(null,utf8.slice(i,i+chunk))}
+    const b64=btoa(binary);
     // Get current file SHA
     const getR=await fetch(`https://api.github.com/repos/${ghRepo}/contents/data.json`,{headers:{'Authorization':'token '+ghToken,'Accept':'application/vnd.github.v3+json'}});
     let sha='';
     if(getR.ok){const gd=await getR.json();sha=gd.sha}
     // Update file
-    const body={message:'Update site data',content:btoa(unescape(encodeURIComponent(JSON.stringify(D,null,2)))),branch:'main'};
+    const body={message:'Update site data',content:b64,branch:'main'};
     if(sha)body.sha=sha;
     const putR=await fetch(`https://api.github.com/repos/${ghRepo}/contents/data.json`,{method:'PUT',headers:{'Authorization':'token '+ghToken,'Accept':'application/vnd.github.v3+json','Content-Type':'application/json'},body:JSON.stringify(body)});
-    if(putR.ok){toast('Saved & pushed to GitHub!')}
+    if(putR.ok){toast('Saved! ('+sizeMB+'MB)')}
     else{const err=await putR.json();toast('GitHub error: '+(err.message||putR.status),false)}
   }catch(e){toast('Save failed: '+e.message,false)}
   saving=false;render();
