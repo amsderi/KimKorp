@@ -946,47 +946,47 @@ function renderMedical(){
   const t=D.medicalteam||[];
   const c=D.cmo||{};
   let ap='';
-  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Chief Medical Officer</div><div class="ail"><div class="air"><span class="it">${c.name||'(nicht gesetzt)'}</span><span class="im">${c.specialty||''}</span><div class="abr"><button class="ab abe" data-ecmo>Bearbeiten</button></div></div></div>${editing&&editing.t==='cmo'?cmoForm():''}</div>
+  if(adm){ap=ghConfigBar()+`<div class="ap"><div class="apt">Chief Medical Officer</div><div class="ail"><div class="air"><span class="it">${c.name||'(not set)'}</span><span class="im">${c.specialty||''}</span><div class="abr"><button class="ab abe" data-ecmo>Edit</button></div></div></div>${editing&&editing.t==='cmo'?cmoForm():''}</div>
     <div class="ap" style="margin-top:20px"><div class="apt">Medical Team</div><div class="ail">${t.map(m=>`<div class="air"><span class="it">${m.name}</span><span class="im">${m.specialty||''} · ${m.role||''}</span><div class="abr"><button class="ab abe" data-emdt="${m.id}">Edit</button><button class="ab abd" data-dmdt="${m.id}">Del</button></div></div>`).join('')}</div><button class="ab aba" data-amdt>+ Add Member</button>${editing&&editing.t==='medical'?medicalForm():''}</div>`}
 
   const cmoHtml=c.name?`<div class="tsec"><h2>CHIEF MEDICAL OFFICER</h2><div class="cmo fade-in"><div class="cmo-img">${c.image?`<img src="${c.image}">`:'<div class="ph">👤</div>'}</div><div class="cmo-body"><h3>${c.name}</h3><div class="cmo-title">Chief Medical Officer</div>${c.specialty?`<div class="cmo-spec">${c.specialty}</div>`:''}${c.bio?`<div class="cmo-bio">${c.bio}</div>`:''}${c.quote?`<div class="cmo-quote">"${c.quote}"</div>`:''}${c.contact?`<div class="cmo-contact">✉ ${c.contact}</div>`:''}</div></div></div>`:'';
 
-  return `<div class="pt" style="margin-top:90px">MEDICAL & HEALTH</div><div class="ps">Gesundheit & Wohlbefinden im Esport</div>${ap}
+  return `<div class="pt" style="margin-top:90px">MEDICAL & HEALTH</div><div class="ps">Health & wellness in esports</div>${ap}
 
-    <div class="med-hero2 fade-in"><div class="med-icons2"><span>🏥</span><span>🧠</span><span>💪</span><span>❤️</span><span>👁️</span></div><h2>HEALTH AWARENESS IM ESPORT</h2><p>Esport verlangt nicht nur mentale Stärke, sondern auch körperliche Gesundheit. Stundenlanges Sitzen, Bildschirmarbeit und hoher Leistungsdruck können Spuren hinterlassen. Bei Kim Korp nehmen wir die Gesundheit unserer Spielerinnen genauso ernst wie ihre Performance — denn nur ein gesunder Körper und ein klarer Geist gewinnen langfristig.</p></div>
+    <div class="med-hero2 fade-in"><div class="med-icons2"><span>🏥</span><span>🧠</span><span>💪</span><span>❤️</span><span>👁️</span></div><h2>HEALTH AWARENESS IN ESPORTS</h2><p>Esports demands not just mental strength, but physical health too. Hours of sitting, screen time, and high-pressure competition take their toll. At Kim Korp, we take our players' health just as seriously as their performance — because only a healthy body and a clear mind win in the long run.</p></div>
 
     <div class="ha-grid">
-    <div class="ha-card fade-in"><div class="hai">🧠</div><h4>MENTALE GESUNDHEIT</h4><p>Leistungsdruck, Turniernerven und toxische Umgebungen können die psychische Gesundheit belasten. Unser Team bietet Ansprechpartner für Stressbewältigung, Burnout-Prävention und mentales Coaching.</p></div>
-    <div class="ha-card fade-in"><div class="hai">🦴</div><h4>ERGONOMIE & HALTUNG</h4><p>Rückenprobleme, Nackenschmerzen und Sehnenscheidenentzündungen sind im Esport weit verbreitet. Wir beraten zu ergonomischen Setups, korrekter Sitzhaltung und regelmäßigen Pausen.</p></div>
-    <div class="ha-card fade-in"><div class="hai">👁️</div><h4>AUGENGESUNDHEIT</h4><p>Stundenlanges Starren auf Bildschirme belastet die Augen. Blaulichtfilter, die 20-20-20-Regel und regelmäßige Augenuntersuchungen sind Teil unserer Empfehlungen.</p></div>
-    <div class="ha-card fade-in"><div class="hai">🏃‍♀️</div><h4>BEWEGUNG & FITNESS</h4><p>Körperliche Aktivität verbessert Reaktionszeit, Konzentration und allgemeines Wohlbefinden. Wir fördern Ausgleichssport, Stretching-Routinen und gesunde Gewohnheiten.</p></div>
-    <div class="ha-card fade-in"><div class="hai">🥗</div><h4>ERNÄHRUNG</h4><p>Energydrinks und Fastfood sind keine Lösung. Ausgewogene Ernährung, ausreichend Wasser und gesunde Snacks steigern die Leistung nachweislich.</p></div>
-    <div class="ha-card fade-in"><div class="hai">😴</div><h4>SCHLAF & ERHOLUNG</h4><p>Regelmäßiger und ausreichender Schlaf ist einer der größten Leistungsfaktoren. Wir sensibilisieren für gesunde Schlafgewohnheiten und Erholungsphasen zwischen Scrims.</p></div>
+    <div class="ha-card fade-in"><div class="hai">🧠</div><h4>MENTAL HEALTH</h4><p>Performance pressure, tournament nerves, and toxic environments can impact mental health. Our team provides support for stress management, burnout prevention, and mental coaching.</p></div>
+    <div class="ha-card fade-in"><div class="hai">🦴</div><h4>ERGONOMICS & POSTURE</h4><p>Back problems, neck pain, and repetitive strain injuries are widespread in esports. We advise on ergonomic setups, correct sitting posture, and regular breaks.</p></div>
+    <div class="ha-card fade-in"><div class="hai">👁️</div><h4>EYE HEALTH</h4><p>Hours of staring at screens strains the eyes. Blue light filters, the 20-20-20 rule, and regular eye exams are part of our recommendations.</p></div>
+    <div class="ha-card fade-in"><div class="hai">🏃‍♀️</div><h4>EXERCISE & FITNESS</h4><p>Physical activity improves reaction time, focus, and overall wellbeing. We promote balanced exercise, stretching routines, and healthy habits.</p></div>
+    <div class="ha-card fade-in"><div class="hai">🥗</div><h4>NUTRITION</h4><p>Energy drinks and fast food aren't the answer. Balanced nutrition, adequate hydration, and healthy snacks have been proven to boost performance.</p></div>
+    <div class="ha-card fade-in"><div class="hai">😴</div><h4>SLEEP & RECOVERY</h4><p>Regular and sufficient sleep is one of the biggest performance factors. We raise awareness for healthy sleep habits and recovery periods between scrims.</p></div>
     </div>
 
     ${cmoHtml}
 
-    <div class="tsec"><h2>UNSER MEDICAL TEAM</h2><p style="color:var(--muted);margin-bottom:24px">Diese Menschen kümmern sich um das Wohlergehen unserer Spielerinnen — von physischer Fitness über mentale Gesundheit bis hin zu Ernährungsberatung.</p>
-    ${t.length?`<div class="mdg">${t.map(m=>`<div class="mdc fade-in"><div class="mdc-img">${m.image?`<img src="${m.image}">`:'<div class="ph">👤</div>'}${m.specialty?`<div class="mdc-badge">${m.specialty}</div>`:''}</div><div class="mdc-info"><h4>${m.name}</h4>${m.specialty?`<div class="mdc-spec">${m.specialty}</div>`:''}${m.role?`<div class="mdc-role">${m.role}</div>`:''}${m.desc?`<div class="mdc-desc">${m.desc}</div>`:''}</div></div>`).join('')}</div>`:'<div style="text-align:center;padding:60px;color:var(--muted)">Noch keine Mitglieder — über das Admin Panel hinzufügen.</div>'}</div>`;
+    <div class="tsec"><h2>OUR MEDICAL TEAM</h2><p style="color:var(--muted);margin-bottom:24px">These are the people who look after the wellbeing of our players — from physical fitness and mental health to nutrition counseling.</p>
+    ${t.length?`<div class="mdg">${t.map(m=>`<div class="mdc fade-in"><div class="mdc-img">${m.image?`<img src="${m.image}">`:'<div class="ph">👤</div>'}${m.specialty?`<div class="mdc-badge">${m.specialty}</div>`:''}</div><div class="mdc-info"><h4>${m.name}</h4>${m.specialty?`<div class="mdc-spec">${m.specialty}</div>`:''}${m.role?`<div class="mdc-role">${m.role}</div>`:''}${m.desc?`<div class="mdc-desc">${m.desc}</div>`:''}</div></div>`).join('')}</div>`:'<div style="text-align:center;padding:60px;color:var(--muted)">No team members yet — add them via the admin panel.</div>'}</div>`;
 }
 function cmoForm(){
   const d=D.cmo||{name:'',specialty:'',bio:'',contact:'',image:'',quote:''};
-  return `<div class="af" id="cmof"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:#00c896">CHIEF MEDICAL OFFICER BEARBEITEN</h3>
-    <div class="fr"><div class="fg"><label>Name</label><input id="fcmn" value="${esc(d.name)}"></div><div class="fg"><label>Fachgebiet</label><input id="fcms" value="${esc(d.specialty)}"></div></div>
-    <div class="fg"><label>Über / Bio</label><textarea id="fcmb" style="min-height:100px">${esc(d.bio)}</textarea></div>
-    <div class="fr"><div class="fg"><label>Zitat (optional)</label><input id="fcmq" value="${esc(d.quote)}" placeholder="Optionales Zitat..."></div><div class="fg"><label>Kontakt / E-Mail</label><input id="fcmc" value="${esc(d.contact)}"></div></div>
-    <div class="fg"><label>Profilbild</label><div class="iua" id="cmiu">Klicken zum Hochladen${d.image?`<br><img src="${d.image}">`:''}
+  return `<div class="af" id="cmof"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:#00c896">EDIT CHIEF MEDICAL OFFICER</h3>
+    <div class="fr"><div class="fg"><label>Name</label><input id="fcmn" value="${esc(d.name)}"></div><div class="fg"><label>Specialty</label><input id="fcms" value="${esc(d.specialty)}"></div></div>
+    <div class="fg"><label>Bio</label><textarea id="fcmb" style="min-height:100px">${esc(d.bio)}</textarea></div>
+    <div class="fr"><div class="fg"><label>Quote (optional)</label><input id="fcmq" value="${esc(d.quote)}" placeholder="Optional quote..."></div><div class="fg"><label>Contact / Email</label><input id="fcmc" value="${esc(d.contact)}"></div></div>
+    <div class="fg"><label>Profile Picture</label><div class="iua" id="cmiu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
     </div><input type="file" id="cmif" accept="image/*" style="display:none"></div>
-    <div class="fa"><button class="ab abs" data-scmo>💾 Speichern</button><button class="ab abc" data-cf>Abbrechen</button></div></div>`;
+    <div class="fa"><button class="ab abs" data-scmo>💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
 }
 function medicalForm(){
   const nw=!editing.id;const df={name:'',role:'',specialty:'',desc:'',image:''};const d=nw?df:(D.medicalteam||[]).find(m=>m.id===editing.id);if(!d)return '';
-  return `<div class="af" id="mdtf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'MITGLIED HINZUFÜGEN':'MITGLIED BEARBEITEN'}</h3>
-    <div class="fr"><div class="fg"><label>Name</label><input id="fmdn" value="${esc(d.name)}"></div><div class="fg"><label>Fachgebiet (z.B. Psychologie, Physiotherapie)</label><input id="fmds" value="${esc(d.specialty)}"></div></div>
-    <div class="fr"><div class="fg"><label>Rolle / Titel</label><input id="fmdr" value="${esc(d.role)}"></div><div class="fg"><label>Beschreibung</label><input id="fmdd" value="${esc(d.desc)}"></div></div>
-    <div class="fg"><label>Profilbild</label><div class="iua" id="mdiu">Klicken zum Hochladen${d.image?`<br><img src="${d.image}">`:''}
+  return `<div class="af" id="mdtf"><h3 style="font-family:var(--ff-title);font-size:20px;letter-spacing:3px;color:var(--accent)">${nw?'ADD MEMBER':'EDIT MEMBER'}</h3>
+    <div class="fr"><div class="fg"><label>Name</label><input id="fmdn" value="${esc(d.name)}"></div><div class="fg"><label>Specialty (e.g. Psychology, Physiotherapy)</label><input id="fmds" value="${esc(d.specialty)}"></div></div>
+    <div class="fr"><div class="fg"><label>Role / Title</label><input id="fmdr" value="${esc(d.role)}"></div><div class="fg"><label>Description</label><input id="fmdd" value="${esc(d.desc)}"></div></div>
+    <div class="fg"><label>Profile Picture</label><div class="iua" id="mdiu">Click to upload${d.image?`<br><img src="${d.image}">`:''}
     </div><input type="file" id="mdif" accept="image/*" style="display:none"></div>
-    <div class="fa"><button class="ab abs" data-smdt="${nw?'new':d.id}">💾 Speichern</button><button class="ab abc" data-cf>Abbrechen</button></div></div>`;
+    <div class="fa"><button class="ab abs" data-smdt="${nw?'new':d.id}">💾 Save</button><button class="ab abc" data-cf>Cancel</button></div></div>`;
 }
 
 // ========== ABOUT US ==========
